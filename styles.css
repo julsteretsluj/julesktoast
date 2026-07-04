@@ -374,6 +374,17 @@ h1 {
   line-height: 1.55;
 }
 
+.work-card ul {
+  margin: 0.65rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.work-card li + li {
+  margin-top: 0.35rem;
+}
+
 .work-card a {
   text-decoration: none;
   display: inline-block;
