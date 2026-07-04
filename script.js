@@ -15,24 +15,24 @@ if (menuToggle && siteNav) {
   });
 }
 
-const revealTargets = document.querySelectorAll(
-  ".hero, .browser-section, .services-section, .works-section, .contact-section"
-);
+const revealTargets = document.querySelectorAll("[data-reveal], .reveal-target");
 
-revealTargets.forEach((item) => item.classList.add("reveal"));
+if (revealTargets.length > 0) {
+  revealTargets.forEach((item) => item.classList.add("reveal"));
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-      }
-    });
-  },
-  { threshold: 0.18 }
-);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    },
+    { threshold: 0.18 }
+  );
 
-revealTargets.forEach((item) => observer.observe(item));
+  revealTargets.forEach((item) => observer.observe(item));
+}
 
 const yearNode = document.getElementById("year");
 if (yearNode) {
