@@ -631,15 +631,15 @@ h1 {
   white-space: nowrap;
 }
 
-.p1 { left: 86%; top: 27%; }
-.p2 { left: 18%; top: 18%; }
-.p3 { left: 88%; top: 76%; }
-.p4 { left: 74%; top: 46%; }
-.p5 { left: 50%; top: 20%; }
-.p6 { left: 72%; top: 41%; }
-.p7 { left: 53%; top: 25%; }
-.p8 { left: 73%; top: 51%; }
-.p9 { left: 78%; top: 54%; }
+.p1 { left: 85%; top: 33%; }
+.p2 { left: 24.5%; top: 31%; }
+.p3 { left: 90.5%; top: 84%; }
+.p4 { left: 75.2%; top: 44%; }
+.p5 { left: 48.5%; top: 24%; }
+.p6 { left: 73.8%; top: 43%; }
+.p7 { left: 52.5%; top: 29%; }
+.p8 { left: 75.7%; top: 50%; }
+.p9 { left: 76.4%; top: 52%; }
 
 .current-home {
   border-color: #0f8a9f;
