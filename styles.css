@@ -444,6 +444,10 @@ h1 {
   text-decoration: none;
 }
 
+.social-row a[data-copy-text]::after {
+  content: "";
+}
+
 .social-row a + a::before {
   content: "•";
   margin-right: 0.45rem;
