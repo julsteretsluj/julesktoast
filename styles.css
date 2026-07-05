@@ -637,12 +637,10 @@ h1 {
 
 .journey-travel-dot {
   position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  background: #f84aa6;
-  border: 2px solid #ffffff;
-  box-shadow: 0 0 0 4px rgba(248, 74, 166, 0.24);
+  width: auto;
+  height: auto;
+  font-size: 1.1rem;
+  line-height: 1;
   transform: translate(-50%, -50%);
   z-index: 4;
   pointer-events: none;
