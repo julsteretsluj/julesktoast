@@ -217,11 +217,28 @@ h1 {
 
 .social-row a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 .social-row a:hover {
   color: var(--primary);
+}
+
+.social-row a::after {
+  content: "↗";
+  font-size: 0.72rem;
+  opacity: 0.78;
+}
+
+.social-row a + a::before {
+  content: "•";
+  margin-right: 0.45rem;
+  color: #8c8c8c;
 }
 
 .hero-visual {
