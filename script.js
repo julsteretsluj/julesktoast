@@ -107,43 +107,43 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
       basics: "Region: East Asia | Language: Japanese | Currency: JPY",
       unStats: "UN stats: Member since 1956 | Population ~124M | Area 377,975 km²",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Tokyo_Skyline_at_night_-_Dec_2022.jpg/640px-Tokyo_Skyline_at_night_-_Dec_2022.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/330px-Skyscrapers_of_Shinjuku_2009_January.jpg",
     },
     Canada: {
       basics: "Region: North America | Languages: English, French | Currency: CAD",
       unStats: "UN stats: Founding member (1945) | Population ~40M | Area 9,984,670 km²",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Parliament-Ottawa.jpg/640px-Parliament-Ottawa.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Parliament-Ottawa.jpg/330px-Parliament-Ottawa.jpg",
     },
     "New Zealand": {
       basics: "Region: Oceania | Languages: English, Maori | Currency: NZD",
       unStats: "UN stats: Founding member (1945) | Population ~5.3M | Area 268,838 km²",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Wellington_City.jpg/640px-Wellington_City.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Wellington_Harbour%2C_New_Zealand%2C_Nov._2009.jpg/330px-Wellington_Harbour%2C_New_Zealand%2C_Nov._2009.jpg",
     },
     Vietnam: {
       basics: "Region: Southeast Asia | Language: Vietnamese | Currency: VND",
       unStats: "UN stats: Member since 1977 | Population ~100M | Area 331,212 km²",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Hanoi_skyline.jpg/640px-Hanoi_skyline.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hanoi_skyline_with_Ba_Vi_Mountain.jpg/330px-Hanoi_skyline_with_Ba_Vi_Mountain.jpg",
     },
     Netherlands: {
       basics: "Region: Europe | Language: Dutch | Currency: EUR",
       unStats: "UN stats: Founding member (1945) | Population ~18M | Area 41,850 km²",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/KeizersgrachtReguliersgrachtAmsterdam.jpg/640px-KeizersgrachtReguliersgrachtAmsterdam.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png/330px-Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png",
     },
     Thailand: {
       basics: "Region: Southeast Asia | Language: Thai | Currency: THB",
       unStats: "UN stats: Member since 1946 | Population ~72M | Area 513,120 km²",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Bangkok_skytrain_sunset.jpg/640px-Bangkok_skytrain_sunset.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/4Y1A1159_Bangkok_%2833536795515%29.jpg/330px-4Y1A1159_Bangkok_%2833536795515%29.jpg",
     },
     Cambodia: {
       basics: "Region: Southeast Asia | Language: Khmer | Currency: KHR",
       unStats: "UN stats: Member since 1955 | Population ~17M | Area 181,035 km²",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Phnom_Penh_skyline.jpg/640px-Phnom_Penh_skyline.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Phnom_Penh_skyline_from_TK_district_Dec_2024.jpg/330px-Phnom_Penh_skyline_from_TK_district_Dec_2024.jpg",
     },
   };
 
