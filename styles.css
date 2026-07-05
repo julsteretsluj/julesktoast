@@ -112,6 +112,7 @@ body {
 :root[data-theme="dark"] .service-grid article,
 :root[data-theme="dark"] .graphic-chip,
 :root[data-theme="dark"] .passport-section .passport-frame,
+:root[data-theme="dark"] .passport-stamp,
 :root[data-theme="dark"] .esa-fun-fact-icon,
 :root[data-theme="dark"] .esa-fun-fact-text,
 :root[data-theme="dark"] .journey-country-popup,
@@ -120,6 +121,10 @@ body {
   background: #22262d;
   border-color: rgba(255, 255, 255, 0.16);
   color: var(--text);
+}
+
+:root[data-theme="dark"] .passport-stamp {
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 :root[data-theme="dark"] .quick-links a,
@@ -390,6 +395,69 @@ h1 {
   height: 100%;
   max-height: 210px;
   max-width: min(34vw, 240px);
+}
+
+.experience-intro {
+  overflow: hidden;
+  padding-right: clamp(10rem, 25vw, 15rem);
+}
+
+.experience-intro .experience-trinket {
+  top: 0.6rem;
+  bottom: 0.6rem;
+  right: 0.8rem;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.experience-intro .experience-trinket .business-cat-trinket {
+  width: auto;
+  height: 100%;
+  max-height: 220px;
+  max-width: min(36vw, 260px);
+}
+
+.skills-intro {
+  overflow: hidden;
+  padding-right: clamp(10rem, 25vw, 15rem);
+}
+
+.skills-intro .skills-trinket {
+  top: 0.6rem;
+  bottom: 0.6rem;
+  right: 0.8rem;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.skills-intro .skills-trinket .skills-heart-trinket {
+  width: auto;
+  height: 100%;
+  max-height: 220px;
+  max-width: min(36vw, 260px);
+}
+
+.about-intro {
+  overflow: hidden;
+  padding-right: clamp(10rem, 26vw, 16rem);
+}
+
+.about-intro .about-trinket {
+  top: 0.6rem;
+  bottom: 0.6rem;
+  right: 0.8rem;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.about-intro .about-trinket .about-globe-trinket {
+  width: auto;
+  height: 100%;
+  max-height: 230px;
+  max-width: min(38vw, 280px);
 }
 
 .hero-meta {
@@ -699,6 +767,8 @@ h1 {
   padding: 0.6rem;
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  width: min(320px, 100%);
+  margin: 0 auto 1rem;
 }
 
 .passport-section img {
@@ -706,6 +776,43 @@ h1 {
   height: auto;
   display: block;
   border-radius: 22px;
+}
+
+.passport-stamps-title {
+  margin: 1.1rem 0 0.7rem;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.passport-stamp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.65rem;
+}
+
+.passport-stamp {
+  border: 1px dashed #b8bec8;
+  border-radius: 14px;
+  background: #f9fafb;
+  padding: 0.65rem 0.75rem;
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.passport-stamp-country {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.passport-stamp-note {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
 }
 
 .info-grid {
@@ -1277,6 +1384,60 @@ footer {
   .now-intro .now-trinket .flowers-trinket {
     width: 96px;
     height: 96px;
+    max-width: none;
+    max-height: none;
+  }
+
+  .experience-intro {
+    padding-right: clamp(1.6rem, 5vw, 2.8rem);
+  }
+
+  .experience-intro .experience-trinket {
+    position: static;
+    margin-top: 0.45rem;
+    margin-bottom: 0.2rem;
+    display: block;
+  }
+
+  .experience-intro .experience-trinket .business-cat-trinket {
+    width: 110px;
+    height: 110px;
+    max-width: none;
+    max-height: none;
+  }
+
+  .skills-intro {
+    padding-right: clamp(1.6rem, 5vw, 2.8rem);
+  }
+
+  .skills-intro .skills-trinket {
+    position: static;
+    margin-top: 0.45rem;
+    margin-bottom: 0.2rem;
+    display: block;
+  }
+
+  .skills-intro .skills-trinket .skills-heart-trinket {
+    width: 110px;
+    height: 110px;
+    max-width: none;
+    max-height: none;
+  }
+
+  .about-intro {
+    padding-right: clamp(1.6rem, 5vw, 2.8rem);
+  }
+
+  .about-intro .about-trinket {
+    position: static;
+    margin-top: 0.45rem;
+    margin-bottom: 0.2rem;
+    display: block;
+  }
+
+  .about-intro .about-trinket .about-globe-trinket {
+    width: 110px;
+    height: 110px;
     max-width: none;
     max-height: none;
   }
