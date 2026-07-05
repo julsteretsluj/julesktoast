@@ -692,6 +692,17 @@ h1 {
   line-height: 1.55;
 }
 
+.service-grid ul {
+  margin: 0.65rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.service-grid li + li {
+  margin-top: 0.35rem;
+}
+
 .esa-feature-card img {
   width: 100%;
   max-width: 190px;
