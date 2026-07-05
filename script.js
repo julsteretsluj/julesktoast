@@ -85,6 +85,7 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
   const segmentDurationMs = 1200;
   const sceneWidth = 950;
   const sceneHeight = 620;
+  const planeHeadingOffsetDeg = 18;
 
   let stopCentersPercent = [];
   let segmentIndex = 0;
@@ -145,6 +146,20 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
     journeyDot.style.top = `${(position.y * 100).toFixed(4)}%`;
   };
 
+  const getSegmentHeadingDeg = (start, end) => {
+    if (!start || !end) return planeHeadingOffsetDeg;
+    const deltaX = end.x - start.x;
+    const deltaY = end.y - start.y;
+    if (Math.abs(deltaX) < 0.00001 && Math.abs(deltaY) < 0.00001) {
+      return planeHeadingOffsetDeg;
+    }
+    return (Math.atan2(deltaY, deltaX) * 180) / Math.PI + planeHeadingOffsetDeg;
+  };
+
+  const setDotHeading = (degrees) => {
+    journeyDot.style.setProperty("--plane-rotation", `${degrees.toFixed(2)}deg`);
+  };
+
   const updateButtonLabel = () => {
     journeyPlayButton.textContent = playing ? "⏸ Pause Route" : "▶ Play Route";
   };
@@ -176,11 +191,25 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
         segmentIndex = stopCentersPercent.length - 1;
         segmentProgress = 0;
         setDotPosition(stopCentersPercent[segmentIndex]);
+        if (stopCentersPercent.length > 1) {
+          setDotHeading(
+            getSegmentHeadingDeg(
+              stopCentersPercent[stopCentersPercent.length - 2],
+              stopCentersPercent[stopCentersPercent.length - 1]
+            )
+          );
+        }
         stopAnimation();
         return;
       }
     }
 
+    setDotHeading(
+      getSegmentHeadingDeg(
+        stopCentersPercent[segmentIndex],
+        stopCentersPercent[Math.min(segmentIndex + 1, stopCentersPercent.length - 1)]
+      )
+    );
     setDotPosition(getCurrentPosition());
     rafId = requestAnimationFrame(animate);
   };
@@ -198,6 +227,12 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
       setDotPosition(stopCentersPercent[0]);
     }
 
+    setDotHeading(
+      getSegmentHeadingDeg(
+        stopCentersPercent[segmentIndex],
+        stopCentersPercent[Math.min(segmentIndex + 1, stopCentersPercent.length - 1)]
+      )
+    );
     playing = true;
     updateButtonLabel();
     rafId = requestAnimationFrame(animate);
@@ -211,8 +246,22 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
       }
       if (segmentIndex === stopCentersPercent.length - 1) {
         setDotPosition(stopCentersPercent[segmentIndex]);
+        if (stopCentersPercent.length > 1) {
+          setDotHeading(
+            getSegmentHeadingDeg(
+              stopCentersPercent[stopCentersPercent.length - 2],
+              stopCentersPercent[stopCentersPercent.length - 1]
+            )
+          );
+        }
       } else {
         setDotPosition(getCurrentPosition());
+        setDotHeading(
+          getSegmentHeadingDeg(
+            stopCentersPercent[segmentIndex],
+            stopCentersPercent[Math.min(segmentIndex + 1, stopCentersPercent.length - 1)]
+          )
+        );
       }
     }
   });
@@ -245,6 +294,9 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
 
   refreshStopCenters();
   setDotPosition(stopCentersPercent[0]);
+  if (stopCentersPercent.length > 1) {
+    setDotHeading(getSegmentHeadingDeg(stopCentersPercent[0], stopCentersPercent[1]));
+  }
   updateZoom();
   updateButtonLabel();
 }

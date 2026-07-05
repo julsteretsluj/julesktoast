@@ -639,9 +639,10 @@ h1 {
   position: absolute;
   width: auto;
   height: auto;
-  font-size: 1.1rem;
+  font-size: 1.75rem;
   line-height: 1;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(var(--plane-rotation, 0deg));
+  transform-origin: center center;
   z-index: 4;
   pointer-events: none;
 }
