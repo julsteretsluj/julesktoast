@@ -227,6 +227,29 @@ h1 {
   line-height: 1.6;
 }
 
+.hero-copy,
+.page-intro {
+  position: relative;
+}
+
+.trinket-burst {
+  position: absolute;
+  right: 0.4rem;
+  top: -0.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  pointer-events: none;
+  opacity: 0.92;
+}
+
+.trinket-burst img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+}
+
 .hero-meta {
   margin: -0.35rem 0 1rem;
   color: #6a7385;
@@ -922,27 +945,6 @@ h1 {
   border-bottom: 1px solid #151515;
 }
 
-.graphic-showcase-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.graphic-chip {
-  background: #ffffff;
-  border: 1px solid #dedede;
-  border-radius: 18px;
-  padding: 0.8rem;
-  box-shadow: var(--shadow-sm);
-}
-
-.graphic-chip img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-}
-
 .contact-section {
   padding: clamp(1.5rem, 5vw, 3rem);
   text-align: center;
@@ -1038,8 +1040,10 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .graphic-showcase-grid {
-    grid-template-columns: 1fr;
+  .trinket-burst {
+    position: static;
+    margin-top: 0.45rem;
+    margin-bottom: 0.2rem;
   }
 
   .experience-logo {
