@@ -441,6 +441,14 @@ h1 {
   margin: 0.2rem 0 0.65rem;
 }
 
+.school-logo {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+  display: block;
+  margin: 0.15rem 0 0.5rem;
+}
+
 .work-card a {
   text-decoration: none;
   display: inline-block;
