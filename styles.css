@@ -815,6 +815,15 @@ h1 {
   color: var(--muted);
 }
 
+.passport-stamp-image {
+  width: 100%;
+  max-width: 140px;
+  margin-top: 0.4rem;
+  border-radius: 10px;
+  align-self: center;
+  display: block;
+}
+
 .info-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
