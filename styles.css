@@ -286,6 +286,38 @@ h1 {
   text-decoration: none;
 }
 
+.social-icon-email {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 3px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.social-icon-website {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.social-icon-linkedin {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.social-icon-instagram {
+  width: 1.4rem;
+  height: 1.05rem;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .toast-stack {
   position: fixed;
   top: 1.2rem;
