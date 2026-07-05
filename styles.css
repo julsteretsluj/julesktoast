@@ -344,6 +344,12 @@ h1 {
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
 }
 
+.passions-trinket .balloon-dog-trinket {
+  width: 72px;
+  height: 72px;
+  mix-blend-mode: screen;
+}
+
 .hero-meta {
   margin: -0.35rem 0 1rem;
   color: #6a7385;
@@ -1149,6 +1155,11 @@ footer {
     position: static;
     margin-top: 0.45rem;
     margin-bottom: 0.2rem;
+  }
+
+  .passions-trinket .balloon-dog-trinket {
+    width: 64px;
+    height: 64px;
   }
 
   .experience-logo {
