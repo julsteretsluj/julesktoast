@@ -94,13 +94,23 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
   let lastTime = null;
   let zoomLevel = 1;
 
-  const getStopPercentCenter = (stop) => {
+  const getStopPercentCenter = (stop, occurrenceIndex = 0) => {
     const lat = Number(stop.getAttribute("data-lat"));
     const lon = Number(stop.getAttribute("data-lon"));
-    const x = (lon + 180) / 360;
+    let x = (lon + 180) / 360;
     const latRad = (lat * Math.PI) / 180;
     const mercatorY = (1 - Math.log(Math.tan(Math.PI / 4 + latRad / 2)) / Math.PI) / 2;
-    const y = Math.max(0, Math.min(1, mercatorY));
+    let y = Math.max(0, Math.min(1, mercatorY));
+
+    // When cities repeat (e.g., Amsterdam/Bangkok), offset subsequent markers
+    // slightly so each numbered stop remains visible.
+    if (occurrenceIndex > 0) {
+      const angle = occurrenceIndex * (Math.PI / 3);
+      const jitterX = (Math.cos(angle) * 14) / sceneWidth;
+      const jitterY = (Math.sin(angle) * 14) / sceneHeight;
+      x = Math.max(0, Math.min(1, x + jitterX));
+      y = Math.max(0, Math.min(1, y + jitterY));
+    }
 
     stop.style.setProperty("--x", `${(x * 100).toFixed(4)}%`);
     stop.style.setProperty("--y", `${(y * 100).toFixed(4)}%`);
@@ -119,7 +129,13 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
   };
 
   const refreshStopCenters = () => {
-    stopCentersPercent = journeyStops.map(getStopPercentCenter);
+    const occurrenceByCity = new Map();
+    stopCentersPercent = journeyStops.map((stop) => {
+      const cityKey = `${stop.getAttribute("data-lat")},${stop.getAttribute("data-lon")}`;
+      const currentOccurrence = occurrenceByCity.get(cityKey) || 0;
+      occurrenceByCity.set(cityKey, currentOccurrence + 1);
+      return getStopPercentCenter(stop, currentOccurrence);
+    });
     if (journeyRouteLine) {
       const points = stopCentersPercent.map((percentPoint) => {
         const px = toScenePixels(percentPoint);

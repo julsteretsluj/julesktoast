@@ -673,24 +673,6 @@ h1 {
   font-weight: 700;
 }
 
-.point-label {
-  position: absolute;
-  left: calc(14px + var(--label-dx, 0px));
-  top: calc(-50% + var(--label-dy, 0px));
-  transform: translateY(-50%);
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #2d2d2d;
-  white-space: nowrap;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #d6d6d6;
-  border-radius: 999px;
-  padding: 0.24rem 0.5rem;
-  box-shadow: var(--shadow-sm);
-}
-
 .current-home {
   border-color: #0f8a9f;
 }
@@ -699,7 +681,25 @@ h1 {
   background: #0f8a9f;
 }
 
-.current-home .point-label {
+.journey-legend {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.journey-legend li {
+  background: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 10px;
+  padding: 0.32rem 0.5rem;
+  font-size: 0.76rem;
+  color: #2b2b2b;
+}
+
+.journey-legend li:nth-child(9) {
   border-color: #0f8a9f;
 }
 
@@ -863,5 +863,9 @@ footer {
 
   .point-label {
     font-size: 0.7rem;
+  }
+
+  .journey-legend {
+    grid-template-columns: 1fr;
   }
 }
