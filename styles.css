@@ -246,6 +246,8 @@ h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 28%;
+  transform: scale(1.28);
   display: block;
   clip-path: polygon(
     50% 0%,
