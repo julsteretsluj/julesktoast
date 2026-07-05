@@ -445,6 +445,17 @@ h1 {
   line-height: 1.55;
 }
 
+.esa-feature-card img {
+  width: 100%;
+  max-width: 190px;
+  display: block;
+  margin: 0 auto 0.7rem;
+}
+
+.esa-feature-card p + p {
+  margin-top: 0.32rem;
+}
+
 .work-card ul {
   margin: 0.65rem 0 0;
   padding-left: 1.1rem;
