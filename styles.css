@@ -472,55 +472,61 @@ h1 {
 }
 
 .education-3d-timeline {
-  position: relative;
-  perspective: 1300px;
-  transform-style: preserve-3d;
-  transition: transform 220ms ease;
-  padding: 0.5rem 0 0.25rem 1.9rem;
-}
-
-.timeline-axis {
-  position: absolute;
-  left: 0.5rem;
-  top: 0.8rem;
-  bottom: 0.8rem;
-  width: 2px;
-  background: linear-gradient(180deg, #8f8f8f, #d9d9d9);
+  display: flex;
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding: 0.35rem;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 .timeline-node {
-  position: relative;
+  flex: 0 0 90px;
+  min-height: 96px;
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
   background: #f8f8f8;
   border: 1px solid #d9d9d9;
   border-radius: 16px;
-  padding: 0.95rem 1rem;
-  margin: 0 0 0.8rem;
+  padding: 0.7rem;
   box-shadow: var(--shadow-sm);
-  transform: translateZ(18px);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  transition: flex-basis 260ms ease, transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
   cursor: pointer;
+  transform: translateY(0);
 }
 
-.timeline-node::before {
-  content: "";
-  position: absolute;
-  left: -1.45rem;
-  top: 1.12rem;
-  width: 11px;
-  height: 11px;
-  border-radius: 999px;
-  border: 2px solid #111111;
-  background: #ffffff;
-}
-
-.timeline-node:hover {
-  transform: translateZ(30px) translateX(4px);
-}
-
+.timeline-node:hover,
+.timeline-node:focus-visible,
 .timeline-node.is-active {
+  flex-basis: 340px;
+  justify-content: flex-start;
+  transform: translateY(-1px);
   border-color: #111111;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
-  transform: translateZ(40px) translateX(6px);
+}
+
+.timeline-node:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 2px;
+}
+
+.timeline-details {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateX(8px);
+  transition: max-width 260ms ease, opacity 220ms ease, transform 220ms ease;
+}
+
+.timeline-node:hover .timeline-details,
+.timeline-node:focus-visible .timeline-details,
+.timeline-node.is-active .timeline-details {
+  max-width: 280px;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .timeline-grade {
@@ -543,7 +549,7 @@ h1 {
   height: 60px;
   object-fit: contain;
   display: block;
-  margin-top: 0.5rem;
+  flex-shrink: 0;
 }
 
 .timeline-logo.logo-tight {
@@ -569,16 +575,27 @@ h1 {
   inset: 0;
   width: 100%;
   height: 100%;
+  z-index: 2;
+}
+
+.journey-world-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.34;
+  filter: grayscale(0.2) contrast(1.1);
 }
 
 .journey-map-lines polyline {
   fill: none;
-  stroke: #545d70;
+  stroke: #27364f;
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 9 8;
-  opacity: 0.82;
+  stroke-dasharray: 10 7;
+  opacity: 0.9;
 }
 
 .journey-point {
@@ -591,6 +608,7 @@ h1 {
   border-radius: 999px;
   padding: 0.26rem 0.5rem 0.26rem 0.32rem;
   box-shadow: var(--shadow-sm);
+  z-index: 3;
 }
 
 .point-index {
@@ -612,17 +630,17 @@ h1 {
   white-space: nowrap;
 }
 
-.p1 { left: 73.5%; top: 46%; }
-.p2 { left: 78%; top: 44%; }
-.p3 { left: 50%; top: 34%; }
-.p4 { left: 83.5%; top: 71%; }
-.p5 { left: 64.5%; top: 51.5%; }
-.p6 { left: 24.5%; top: 29%; }
-.p7 { left: 71.5%; top: 26.5%; }
+.p1 { left: 72%; top: 41%; }
+.p2 { left: 82%; top: 52%; }
+.p3 { left: 50%; top: 20%; }
+.p4 { left: 88%; top: 76%; }
+.p5 { left: 74%; top: 46%; }
+.p6 { left: 18%; top: 18%; }
+.p7 { left: 86%; top: 27%; }
 
 .current-home {
-  left: 76%;
-  top: 43%;
+  left: 78%;
+  top: 40%;
   border-color: #0f8a9f;
 }
 
@@ -754,19 +772,34 @@ footer {
   }
 
   .education-3d-timeline {
-    padding-left: 1.55rem;
-  }
-
-  .timeline-axis {
-    left: 0.38rem;
+    gap: 0.55rem;
   }
 
   .timeline-node {
-    padding: 0.9rem 0.85rem;
+    flex-basis: 84px;
+    min-height: 90px;
+    padding: 0.6rem;
   }
 
-  .timeline-node::before {
-    left: -1.2rem;
+  .timeline-node:hover,
+  .timeline-node:focus-visible,
+  .timeline-node.is-active {
+    flex-basis: 268px;
+  }
+
+  .timeline-details {
+    max-width: 0;
+  }
+
+  .timeline-node:hover .timeline-details,
+  .timeline-node:focus-visible .timeline-details,
+  .timeline-node.is-active .timeline-details {
+    max-width: 190px;
+  }
+
+  .timeline-logo {
+    width: 52px;
+    height: 52px;
   }
 
   .journey-map-wrap {

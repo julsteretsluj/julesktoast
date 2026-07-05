@@ -43,26 +43,28 @@ const educationTimeline = document.getElementById("education-timeline");
 if (educationTimeline) {
   const timelineNodes = educationTimeline.querySelectorAll(".timeline-node");
 
-  timelineNodes.forEach((node) => {
-    const depth = Number(node.getAttribute("data-depth") || "18");
-    node.style.transform = `translateZ(${depth}px)`;
+  const centerNode = (node) => {
+    const left = node.offsetLeft - (educationTimeline.clientWidth - node.clientWidth) / 2;
+    educationTimeline.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
+  };
 
-    node.addEventListener("click", () => {
-      timelineNodes.forEach((item) => item.classList.remove("is-active"));
+  const setActiveNode = (node) => {
+    timelineNodes.forEach((item) => item.classList.remove("is-active"));
+    node.classList.add("is-active");
+    centerNode(node);
+  };
+
+  timelineNodes.forEach((node, index) => {
+    if (index === 0) {
       node.classList.add("is-active");
-    });
+    }
+    node.addEventListener("mouseenter", () => setActiveNode(node));
+    node.addEventListener("focus", () => setActiveNode(node));
+    node.addEventListener("click", () => setActiveNode(node));
   });
 
-  educationTimeline.addEventListener("pointermove", (event) => {
-    const box = educationTimeline.getBoundingClientRect();
-    const x = (event.clientX - box.left) / box.width - 0.5;
-    const y = (event.clientY - box.top) / box.height - 0.5;
-    const rotateY = x * 10;
-    const rotateX = y * -8;
-    educationTimeline.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
-
-  educationTimeline.addEventListener("pointerleave", () => {
-    educationTimeline.style.transform = "rotateX(0deg) rotateY(0deg)";
-  });
+  const activeNode = educationTimeline.querySelector(".timeline-node.is-active");
+  if (activeNode) {
+    centerNode(activeNode);
+  }
 }
