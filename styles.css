@@ -678,28 +678,57 @@ h1 {
   z-index: 3;
 }
 
-.point-index {
+.point-pin {
   position: absolute;
   left: 0;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 1.2rem;
-  height: 1.2rem;
-  border-radius: 999px;
-  background: #161616;
-  color: #ffffff;
-  display: inline-grid;
-  place-items: center;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 160ms ease;
 }
 
-.current-home {
-  border-color: #0f8a9f;
+.journey-point:hover .point-pin,
+.journey-point:focus-within .point-pin {
+  transform: translate(-50%, -50%) scale(1.45);
 }
 
-.current-home .point-index {
-  background: #0f8a9f;
+.journey-country-popup {
+  position: absolute;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #d7d7d7;
+  border-radius: 14px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
+  padding: 0.5rem;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms ease;
+}
+
+.journey-country-popup.is-visible {
+  opacity: 1;
+}
+
+.journey-country-popup img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.journey-country-popup h3 {
+  margin: 0.45rem 0 0.15rem;
+  font-size: 0.92rem;
+}
+
+.journey-country-popup p {
+  margin: 0.08rem 0;
+  font-size: 0.75rem;
+  color: #333333;
+  line-height: 1.35;
 }
 
 .work-card a {

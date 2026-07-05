@@ -77,6 +77,11 @@ const journeyZoomOutButton = document.getElementById("journey-zoom-out");
 const journeyZoomResetButton = document.getElementById("journey-zoom-reset");
 const journeyDot = document.getElementById("journey-dot");
 const journeyRouteLine = document.getElementById("journey-route-line");
+const journeyCountryPopup = document.getElementById("journey-country-popup");
+const journeyCountryImage = document.getElementById("journey-country-image");
+const journeyCountryName = document.getElementById("journey-country-name");
+const journeyCountryCapital = document.getElementById("journey-country-capital");
+const journeyCountryBasics = document.getElementById("journey-country-basics");
 
 if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
   const journeyStops = Array.from(journeyMap.querySelectorAll(".journey-point")).sort((a, b) => {
@@ -94,6 +99,45 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
   let rafId = null;
   let lastTime = null;
   let zoomLevel = 1;
+  let activePopupStop = null;
+
+  const countryFacts = {
+    Japan: {
+      basics: "Region: East Asia | Language: Japanese | Currency: JPY",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Tokyo_Skyline_at_night_-_Dec_2022.jpg/640px-Tokyo_Skyline_at_night_-_Dec_2022.jpg",
+    },
+    Canada: {
+      basics: "Region: North America | Languages: English, French | Currency: CAD",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Parliament-Ottawa.jpg/640px-Parliament-Ottawa.jpg",
+    },
+    "New Zealand": {
+      basics: "Region: Oceania | Languages: English, Maori | Currency: NZD",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Wellington_City.jpg/640px-Wellington_City.jpg",
+    },
+    Vietnam: {
+      basics: "Region: Southeast Asia | Language: Vietnamese | Currency: VND",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Hanoi_skyline.jpg/640px-Hanoi_skyline.jpg",
+    },
+    Netherlands: {
+      basics: "Region: Europe | Language: Dutch | Currency: EUR",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/KeizersgrachtReguliersgrachtAmsterdam.jpg/640px-KeizersgrachtReguliersgrachtAmsterdam.jpg",
+    },
+    Thailand: {
+      basics: "Region: Southeast Asia | Language: Thai | Currency: THB",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Bangkok_skytrain_sunset.jpg/640px-Bangkok_skytrain_sunset.jpg",
+    },
+    Cambodia: {
+      basics: "Region: Southeast Asia | Language: Khmer | Currency: KHR",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Phnom_Penh_skyline.jpg/640px-Phnom_Penh_skyline.jpg",
+    },
+  };
 
   const getStopPercentCenter = (stop) => {
     const lat = Number(stop.getAttribute("data-lat"));
@@ -158,6 +202,59 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
 
   const setDotHeading = (degrees) => {
     journeyDot.style.setProperty("--plane-rotation", `${degrees.toFixed(2)}deg`);
+  };
+
+  const hideCountryPopup = () => {
+    if (!journeyCountryPopup) return;
+    journeyCountryPopup.classList.remove("is-visible");
+    journeyCountryPopup.setAttribute("aria-hidden", "true");
+    activePopupStop = null;
+  };
+
+  const showCountryPopup = (stop) => {
+    if (
+      !journeyCountryPopup ||
+      !journeyCountryImage ||
+      !journeyCountryName ||
+      !journeyCountryCapital ||
+      !journeyCountryBasics
+    ) {
+      return;
+    }
+
+    const country = stop.getAttribute("data-country") || "Country";
+    const capital = stop.getAttribute("data-capital") || "Capital";
+    const details = countryFacts[country] || {
+      basics: "Region: Global | Language: Multiple | Currency: Local",
+      image: "",
+    };
+
+    journeyCountryName.textContent = country;
+    journeyCountryCapital.textContent = `Capital: ${capital}`;
+    journeyCountryBasics.textContent = details.basics;
+    journeyCountryImage.src = details.image;
+    journeyCountryImage.alt = `${capital} city photo`;
+
+    const point = getStopPercentCenter(stop);
+    const anchor = toRoutePixels(point);
+
+    journeyCountryPopup.classList.add("is-visible");
+    journeyCountryPopup.setAttribute("aria-hidden", "false");
+
+    const popupWidth = journeyCountryPopup.offsetWidth || 220;
+    const popupHeight = journeyCountryPopup.offsetHeight || 170;
+    const minPad = 8;
+
+    let left = anchor.x + 14;
+    let top = anchor.y - popupHeight - 14;
+    if (left + popupWidth > sceneWidth - minPad) left = anchor.x - popupWidth - 14;
+    if (left < minPad) left = minPad;
+    if (top < minPad) top = anchor.y + 14;
+    if (top + popupHeight > sceneHeight - minPad) top = sceneHeight - popupHeight - minPad;
+
+    journeyCountryPopup.style.left = `${left}px`;
+    journeyCountryPopup.style.top = `${top}px`;
+    activePopupStop = stop;
   };
 
   const updateButtonLabel = () => {
@@ -264,6 +361,9 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
         );
       }
     }
+    if (activePopupStop) {
+      showCountryPopup(activePopupStop);
+    }
   });
 
   const updateZoom = () => {
@@ -291,6 +391,14 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
     zoomLevel = Math.max(1, Math.min(2.4, zoomLevel - delta * 0.12));
     updateZoom();
   });
+
+  journeyStops.forEach((stop) => {
+    stop.addEventListener("mouseenter", () => showCountryPopup(stop));
+    stop.addEventListener("mouseleave", hideCountryPopup);
+    stop.addEventListener("click", () => showCountryPopup(stop));
+  });
+
+  journeyMapScene.addEventListener("mouseleave", hideCountryPopup);
 
   refreshStopCenters();
   setDotPosition(stopCentersPercent[0]);
