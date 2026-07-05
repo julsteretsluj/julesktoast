@@ -457,6 +457,12 @@ h1 {
   margin: 0.15rem 0 0.5rem;
 }
 
+.logo-tight {
+  object-fit: cover;
+  transform: scale(1.28);
+  transform-origin: center;
+}
+
 .work-card a {
   text-decoration: none;
   display: inline-block;
