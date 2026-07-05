@@ -1,5 +1,67 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
+const themeToggleButtons = document.querySelectorAll("[data-theme-toggle]");
+const copyTriggers = document.querySelectorAll("[data-copy-text]");
+
+const toastStack = (() => {
+  let node = document.querySelector(".toast-stack");
+  if (!node) {
+    node = document.createElement("div");
+    node.className = "toast-stack";
+    document.body.appendChild(node);
+  }
+  return node;
+})();
+
+const showToast = (message) => {
+  const toast = document.createElement("div");
+  toast.className = "toast-bite";
+  toast.textContent = message;
+  toastStack.appendChild(toast);
+
+  window.setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(-6px)";
+    window.setTimeout(() => toast.remove(), 180);
+  }, 2600);
+};
+
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute("data-theme", theme);
+  themeToggleButtons.forEach((button) => {
+    button.textContent = theme === "dark" ? "Dark Roast" : "Light Roast";
+    button.setAttribute(
+      "aria-label",
+      theme === "dark" ? "Switch to Light Roast" : "Switch to Dark Roast"
+    );
+  });
+};
+
+const savedTheme = localStorage.getItem("jules-theme");
+applyTheme(savedTheme === "dark" ? "dark" : "light");
+
+themeToggleButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const nextTheme =
+      document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+    localStorage.setItem("jules-theme", nextTheme);
+  });
+});
+
+copyTriggers.forEach((trigger) => {
+  trigger.addEventListener("click", async (event) => {
+    event.preventDefault();
+    const text = trigger.getAttribute("data-copy-text");
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast("✨ Email copied to clipboard! Freshly baked.");
+    } catch {
+      showToast("Could not copy email. Please copy manually.");
+    }
+  });
+});
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
