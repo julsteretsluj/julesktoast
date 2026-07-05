@@ -38,3 +38,31 @@ const yearNode = document.getElementById("year");
 if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
 }
+
+const educationTimeline = document.getElementById("education-timeline");
+if (educationTimeline) {
+  const timelineNodes = educationTimeline.querySelectorAll(".timeline-node");
+
+  timelineNodes.forEach((node) => {
+    const depth = Number(node.getAttribute("data-depth") || "18");
+    node.style.transform = `translateZ(${depth}px)`;
+
+    node.addEventListener("click", () => {
+      timelineNodes.forEach((item) => item.classList.remove("is-active"));
+      node.classList.add("is-active");
+    });
+  });
+
+  educationTimeline.addEventListener("pointermove", (event) => {
+    const box = educationTimeline.getBoundingClientRect();
+    const x = (event.clientX - box.left) / box.width - 0.5;
+    const y = (event.clientY - box.top) / box.height - 0.5;
+    const rotateY = x * 10;
+    const rotateX = y * -8;
+    educationTimeline.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  educationTimeline.addEventListener("pointerleave", () => {
+    educationTimeline.style.transform = "rotateX(0deg) rotateY(0deg)";
+  });
+}

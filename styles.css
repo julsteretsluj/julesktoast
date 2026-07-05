@@ -471,6 +471,165 @@ h1 {
   padding-bottom: 5.2rem;
 }
 
+.education-3d-timeline {
+  position: relative;
+  perspective: 1300px;
+  transform-style: preserve-3d;
+  transition: transform 220ms ease;
+  padding: 0.5rem 0 0.25rem 1.9rem;
+}
+
+.timeline-axis {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.8rem;
+  bottom: 0.8rem;
+  width: 2px;
+  background: linear-gradient(180deg, #8f8f8f, #d9d9d9);
+}
+
+.timeline-node {
+  position: relative;
+  background: #f8f8f8;
+  border: 1px solid #d9d9d9;
+  border-radius: 16px;
+  padding: 0.95rem 1rem;
+  margin: 0 0 0.8rem;
+  box-shadow: var(--shadow-sm);
+  transform: translateZ(18px);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  cursor: pointer;
+}
+
+.timeline-node::before {
+  content: "";
+  position: absolute;
+  left: -1.45rem;
+  top: 1.12rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  border: 2px solid #111111;
+  background: #ffffff;
+}
+
+.timeline-node:hover {
+  transform: translateZ(30px) translateX(4px);
+}
+
+.timeline-node.is-active {
+  border-color: #111111;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+  transform: translateZ(40px) translateX(6px);
+}
+
+.timeline-grade {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #3f3f3f;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-node h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.timeline-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.timeline-logo.logo-tight {
+  object-fit: cover;
+  transform: scale(1.2);
+}
+
+.journey-map-wrap {
+  position: relative;
+  margin-top: 0.65rem;
+  min-height: 360px;
+  border-radius: 18px;
+  border: 1px solid #dbdbdb;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(29, 87, 150, 0.08), transparent 36%),
+    radial-gradient(circle at 82% 78%, rgba(18, 124, 111, 0.09), transparent 38%),
+    linear-gradient(180deg, #fbfbfb, #f2f2f2);
+  overflow: hidden;
+}
+
+.journey-map-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.journey-map-lines polyline {
+  fill: none;
+  stroke: #545d70;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 9 8;
+  opacity: 0.82;
+}
+
+.journey-point {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #d6d6d6;
+  border-radius: 999px;
+  padding: 0.26rem 0.5rem 0.26rem 0.32rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.point-index {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  background: #161616;
+  color: #ffffff;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.point-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #2d2d2d;
+  white-space: nowrap;
+}
+
+.p1 { left: 73.5%; top: 46%; }
+.p2 { left: 78%; top: 44%; }
+.p3 { left: 50%; top: 34%; }
+.p4 { left: 83.5%; top: 71%; }
+.p5 { left: 64.5%; top: 51.5%; }
+.p6 { left: 24.5%; top: 29%; }
+.p7 { left: 71.5%; top: 26.5%; }
+
+.current-home {
+  left: 76%;
+  top: 43%;
+  border-color: #0f8a9f;
+}
+
+.current-home .point-index {
+  background: #0f8a9f;
+}
+
 .work-card a {
   text-decoration: none;
   display: inline-block;
@@ -592,5 +751,29 @@ footer {
   .work-card.has-school-logo {
     padding-right: 5rem;
     padding-bottom: 4.8rem;
+  }
+
+  .education-3d-timeline {
+    padding-left: 1.55rem;
+  }
+
+  .timeline-axis {
+    left: 0.38rem;
+  }
+
+  .timeline-node {
+    padding: 0.9rem 0.85rem;
+  }
+
+  .timeline-node::before {
+    left: -1.2rem;
+  }
+
+  .journey-map-wrap {
+    min-height: 420px;
+  }
+
+  .point-label {
+    font-size: 0.7rem;
   }
 }
