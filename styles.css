@@ -572,6 +572,9 @@ h1 {
 }
 
 .journey-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   margin-top: 0.35rem;
 }
 
@@ -586,12 +589,30 @@ h1 {
   cursor: pointer;
 }
 
+.journey-zoom-button {
+  border: 1px solid #979797;
+  background: #ffffff;
+  color: #212121;
+  border-radius: 999px;
+  padding: 0.34rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .journey-map-lines {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 2;
+}
+
+.journey-map-scene {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+  transition: transform 180ms ease;
 }
 
 .journey-world-map {
@@ -629,18 +650,25 @@ h1 {
 
 .journey-point {
   position: absolute;
+  left: var(--x);
+  top: var(--y);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid #d6d6d6;
   border-radius: 999px;
-  padding: 0.26rem 0.5rem 0.26rem 0.32rem;
+  padding: 0.26rem 0.5rem 0.26rem 0.72rem;
   box-shadow: var(--shadow-sm);
   z-index: 3;
+  transform: translateY(-50%);
 }
 
 .point-index {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 1.2rem;
   height: 1.2rem;
   border-radius: 999px;
@@ -658,16 +686,6 @@ h1 {
   color: #2d2d2d;
   white-space: nowrap;
 }
-
-.p1 { left: 85%; top: 33%; }
-.p2 { left: 24.5%; top: 31%; }
-.p3 { left: 90.5%; top: 84%; }
-.p4 { left: 75.2%; top: 44%; }
-.p5 { left: 48.5%; top: 24%; }
-.p6 { left: 73.8%; top: 43%; }
-.p7 { left: 52.5%; top: 29%; }
-.p8 { left: 75.7%; top: 50%; }
-.p9 { left: 76.4%; top: 52%; }
 
 .current-home {
   border-color: #0f8a9f;

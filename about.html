@@ -123,61 +123,64 @@
         </p>
         <div class="journey-controls">
           <button id="journey-play" class="journey-play-button" type="button">▶ Play Route</button>
+          <button id="journey-zoom-in" class="journey-zoom-button" type="button">＋</button>
+          <button id="journey-zoom-out" class="journey-zoom-button" type="button">－</button>
+          <button id="journey-zoom-reset" class="journey-zoom-button" type="button">Reset</button>
         </div>
         <div class="journey-map-wrap">
-          <img
-            class="journey-world-map"
-            src="assets/world-map.svg"
-            alt="World map background"
-            aria-hidden="true"
-          />
-          <svg
-            class="journey-map-lines"
-            viewBox="0 0 1000 460"
-            role="img"
-            aria-label="Map showing movement path between countries"
-          >
-            <polyline
-              points="886,160 281,149 941,387 797,210 514,117 782,205 514,117 782,205 794,214"
-            ></polyline>
-          </svg>
-          <div id="journey-dot" class="journey-travel-dot" aria-hidden="true"></div>
+          <div id="journey-map-scene" class="journey-map-scene">
+            <img
+              class="journey-world-map"
+              src="assets/world-map.svg"
+              alt="World map background"
+              aria-hidden="true"
+            />
+            <svg
+              class="journey-map-lines"
+              viewBox="0 0 1000 460"
+              role="img"
+              aria-label="Map showing movement path between countries"
+            >
+              <polyline id="journey-route-line" points=""></polyline>
+            </svg>
+            <div id="journey-dot" class="journey-travel-dot" aria-hidden="true"></div>
 
-          <div class="journey-point p1">
-            <span class="point-index">1</span>
-            <span class="point-label">Tokyo, Japan</span>
-          </div>
-          <div class="journey-point p2">
-            <span class="point-index">2</span>
-            <span class="point-label">Toronto, Canada</span>
-          </div>
-          <div class="journey-point p3">
-            <span class="point-index">3</span>
-            <span class="point-label">Auckland, New Zealand</span>
-          </div>
-          <div class="journey-point p4">
-            <span class="point-index">4</span>
-            <span class="point-label">Ho Chi Minh City, Vietnam</span>
-          </div>
-          <div class="journey-point p5">
-            <span class="point-index">5</span>
-            <span class="point-label">Amsterdam, Netherlands</span>
-          </div>
-          <div class="journey-point p6">
-            <span class="point-index">6</span>
-            <span class="point-label">Bangkok, Thailand</span>
-          </div>
-          <div class="journey-point p7">
-            <span class="point-index">7</span>
-            <span class="point-label">Amsterdam, Netherlands (again)</span>
-          </div>
-          <div class="journey-point p8">
-            <span class="point-index">8</span>
-            <span class="point-label">Bangkok, Thailand (again)</span>
-          </div>
-          <div class="journey-point p9 current-home">
-            <span class="point-index">9</span>
-            <span class="point-label">Phnom Penh, Cambodia (current home)</span>
+            <div class="journey-point" data-stop="1" style="--x: 88.6%; --y: 34.8%;">
+              <span class="point-index">1</span>
+              <span class="point-label">Tokyo, Japan</span>
+            </div>
+            <div class="journey-point" data-stop="2" style="--x: 28.1%; --y: 32.4%;">
+              <span class="point-index">2</span>
+              <span class="point-label">Toronto, Canada</span>
+            </div>
+            <div class="journey-point" data-stop="3" style="--x: 94.1%; --y: 84.1%;">
+              <span class="point-index">3</span>
+              <span class="point-label">Auckland, New Zealand</span>
+            </div>
+            <div class="journey-point" data-stop="4" style="--x: 79.7%; --y: 45.7%;">
+              <span class="point-index">4</span>
+              <span class="point-label">Ho Chi Minh City, Vietnam</span>
+            </div>
+            <div class="journey-point" data-stop="5" style="--x: 51.4%; --y: 25.4%;">
+              <span class="point-index">5</span>
+              <span class="point-label">Amsterdam, Netherlands</span>
+            </div>
+            <div class="journey-point" data-stop="6" style="--x: 78.2%; --y: 44.6%;">
+              <span class="point-index">6</span>
+              <span class="point-label">Bangkok, Thailand</span>
+            </div>
+            <div class="journey-point" data-stop="7" style="--x: 51.4%; --y: 25.4%;">
+              <span class="point-index">7</span>
+              <span class="point-label">Amsterdam, Netherlands (again)</span>
+            </div>
+            <div class="journey-point" data-stop="8" style="--x: 78.2%; --y: 44.6%;">
+              <span class="point-index">8</span>
+              <span class="point-label">Bangkok, Thailand (again)</span>
+            </div>
+            <div class="journey-point current-home" data-stop="9" style="--x: 79.4%; --y: 46.5%;">
+              <span class="point-index">9</span>
+              <span class="point-label">Phnom Penh, Cambodia (current home)</span>
+            </div>
           </div>
         </div>
       </section>
