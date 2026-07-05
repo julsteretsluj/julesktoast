@@ -571,6 +571,21 @@ h1 {
   overflow: hidden;
 }
 
+.journey-controls {
+  margin-top: 0.35rem;
+}
+
+.journey-play-button {
+  border: 1px solid #111111;
+  background: #111111;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .journey-map-lines {
   position: absolute;
   inset: 0;
@@ -597,6 +612,19 @@ h1 {
   stroke-linejoin: round;
   stroke-dasharray: 10 7;
   opacity: 0.9;
+}
+
+.journey-travel-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #f84aa6;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 4px rgba(248, 74, 166, 0.24);
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: none;
 }
 
 .journey-point {
