@@ -111,7 +111,7 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
     };
   };
 
-  const toScenePixels = (pointPercent) => {
+  const toRoutePixels = (pointPercent) => {
     return {
       x: pointPercent.x * sceneWidth,
       y: pointPercent.y * sceneHeight,
@@ -122,7 +122,7 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
     stopCentersPercent = journeyStops.map(getStopPercentCenter);
     if (journeyRouteLine) {
       const points = stopCentersPercent.map((percentPoint) => {
-        const px = toScenePixels(percentPoint);
+        const px = toRoutePixels(percentPoint);
         return `${px.x.toFixed(1)},${px.y.toFixed(1)}`;
       });
       journeyRouteLine.setAttribute("points", points.join(" "));
@@ -133,17 +133,16 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
     const start = stopCentersPercent[segmentIndex];
     const end = stopCentersPercent[Math.min(segmentIndex + 1, stopCentersPercent.length - 1)];
     if (!start || !end) return null;
-    const percentPosition = {
+    return {
       x: start.x + (end.x - start.x) * segmentProgress,
       y: start.y + (end.y - start.y) * segmentProgress,
     };
-    return toScenePixels(percentPosition);
   };
 
   const setDotPosition = (position) => {
     if (!position) return;
-    journeyDot.style.left = `${position.x}px`;
-    journeyDot.style.top = `${position.y}px`;
+    journeyDot.style.left = `${(position.x * 100).toFixed(4)}%`;
+    journeyDot.style.top = `${(position.y * 100).toFixed(4)}%`;
   };
 
   const updateButtonLabel = () => {
@@ -176,7 +175,7 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
       if (segmentIndex >= stopCentersPercent.length - 1) {
         segmentIndex = stopCentersPercent.length - 1;
         segmentProgress = 0;
-        setDotPosition(toScenePixels(stopCentersPercent[segmentIndex]));
+        setDotPosition(stopCentersPercent[segmentIndex]);
         stopAnimation();
         return;
       }
@@ -196,7 +195,7 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
     if (segmentIndex >= stopCentersPercent.length - 1) {
       segmentIndex = 0;
       segmentProgress = 0;
-      setDotPosition(toScenePixels(stopCentersPercent[0]));
+      setDotPosition(stopCentersPercent[0]);
     }
 
     playing = true;
@@ -211,7 +210,7 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
         segmentIndex = Math.max(0, stopCentersPercent.length - 1);
       }
       if (segmentIndex === stopCentersPercent.length - 1) {
-        setDotPosition(toScenePixels(stopCentersPercent[segmentIndex]));
+        setDotPosition(stopCentersPercent[segmentIndex]);
       } else {
         setDotPosition(getCurrentPosition());
       }
@@ -245,7 +244,7 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
   });
 
   refreshStopCenters();
-  setDotPosition(toScenePixels(stopCentersPercent[0]));
+  setDotPosition(stopCentersPercent[0]);
   updateZoom();
   updateButtonLabel();
 }
