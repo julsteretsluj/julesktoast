@@ -98,7 +98,9 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
     const lat = Number(stop.getAttribute("data-lat"));
     const lon = Number(stop.getAttribute("data-lon"));
     const x = (lon + 180) / 360;
-    const y = (90 - lat) / 180;
+    const latRad = (lat * Math.PI) / 180;
+    const mercatorY = (1 - Math.log(Math.tan(Math.PI / 4 + latRad / 2)) / Math.PI) / 2;
+    const y = Math.max(0, Math.min(1, mercatorY));
 
     stop.style.setProperty("--x", `${(x * 100).toFixed(4)}%`);
     stop.style.setProperty("--y", `${(y * 100).toFixed(4)}%`);

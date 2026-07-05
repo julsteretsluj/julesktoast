@@ -652,16 +652,9 @@ h1 {
   position: absolute;
   left: var(--x);
   top: var(--y);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #d6d6d6;
-  border-radius: 999px;
-  padding: 0.26rem 0.5rem 0.26rem 0.72rem;
-  box-shadow: var(--shadow-sm);
+  width: 0;
+  height: 0;
   z-index: 3;
-  transform: translateY(-50%);
 }
 
 .point-index {
@@ -681,10 +674,21 @@ h1 {
 }
 
 .point-label {
+  position: absolute;
+  left: calc(14px + var(--label-dx, 0px));
+  top: calc(-50% + var(--label-dy, 0px));
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
   font-size: 0.75rem;
   font-weight: 600;
   color: #2d2d2d;
   white-space: nowrap;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #d6d6d6;
+  border-radius: 999px;
+  padding: 0.24rem 0.5rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .current-home {
@@ -693,6 +697,10 @@ h1 {
 
 .current-home .point-index {
   background: #0f8a9f;
+}
+
+.current-home .point-label {
+  border-color: #0f8a9f;
 }
 
 .work-card a {
