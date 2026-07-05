@@ -233,12 +233,14 @@ h1 {
   content: "↗";
   font-size: 0.72rem;
   opacity: 0.78;
+  text-decoration: none;
 }
 
 .social-row a + a::before {
   content: "•";
   margin-right: 0.45rem;
   color: #8c8c8c;
+  text-decoration: none;
 }
 
 .hero-visual {
