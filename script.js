@@ -97,8 +97,10 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
   const getStopPercentCenter = (stop) => {
     const lat = Number(stop.getAttribute("data-lat"));
     const lon = Number(stop.getAttribute("data-lon"));
-    const x = (lon + 180) / 360;
-    const y = (90 - lat) / 180;
+    const mapX = Number(stop.getAttribute("data-x"));
+    const mapY = Number(stop.getAttribute("data-y"));
+    const x = Number.isFinite(mapX) ? mapX / 100 : (lon + 180) / 360;
+    const y = Number.isFinite(mapY) ? mapY / 100 : (90 - lat) / 180;
 
     stop.style.setProperty("--x", `${(x * 100).toFixed(4)}%`);
     stop.style.setProperty("--y", `${(y * 100).toFixed(4)}%`);
