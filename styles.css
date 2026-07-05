@@ -561,7 +561,7 @@ h1 {
   position: relative;
   margin-top: 0.65rem;
   width: 100%;
-  aspect-ratio: 1000 / 460;
+  aspect-ratio: 950 / 620;
   border-radius: 18px;
   border: 1px solid #dbdbdb;
   background:
@@ -850,7 +850,7 @@ footer {
   }
 
   .journey-map-wrap {
-    aspect-ratio: 1000 / 460;
+    aspect-ratio: 950 / 620;
   }
 
   .point-label {

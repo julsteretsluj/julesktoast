@@ -83,8 +83,8 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
     return Number(a.getAttribute("data-stop")) - Number(b.getAttribute("data-stop"));
   });
   const segmentDurationMs = 1200;
-  const sceneWidth = 1000;
-  const sceneHeight = 460;
+  const sceneWidth = 950;
+  const sceneHeight = 620;
 
   let stopCentersPercent = [];
   let segmentIndex = 0;
@@ -95,10 +95,14 @@ if (journeyMap && journeyMapScene && journeyPlayButton && journeyDot) {
   let zoomLevel = 1;
 
   const getStopPercentCenter = (stop) => {
-    const xRaw = (stop.style.getPropertyValue("--x") || "0%").trim().replace("%", "");
-    const yRaw = (stop.style.getPropertyValue("--y") || "0%").trim().replace("%", "");
-    const x = Number(xRaw) / 100;
-    const y = Number(yRaw) / 100;
+    const lat = Number(stop.getAttribute("data-lat"));
+    const lon = Number(stop.getAttribute("data-lon"));
+    const x = (lon + 180) / 360;
+    const y = (90 - lat) / 180;
+
+    stop.style.setProperty("--x", `${(x * 100).toFixed(4)}%`);
+    stop.style.setProperty("--y", `${(y * 100).toFixed(4)}%`);
+
     return {
       x: Number.isFinite(x) ? x : 0,
       y: Number.isFinite(y) ? y : 0,
