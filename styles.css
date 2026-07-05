@@ -82,6 +82,100 @@ body {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
+:root[data-theme="dark"] .site-nav a {
+  color: #c3c8d1;
+}
+
+:root[data-theme="dark"] .site-nav a.nav-current,
+:root[data-theme="dark"] .site-nav a:hover,
+:root[data-theme="dark"] .site-nav a:focus-visible {
+  color: #ffffff;
+}
+
+:root[data-theme="dark"] .shell-card {
+  background: linear-gradient(160deg, #1a1d22, #15181d);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+:root[data-theme="dark"] .hero-meta,
+:root[data-theme="dark"] .browser-content .intro,
+:root[data-theme="dark"] .browser-bar p,
+:root[data-theme="dark"] footer {
+  color: #b2b8c2;
+}
+
+:root[data-theme="dark"] .quick-links a,
+:root[data-theme="dark"] .floating-tags span,
+:root[data-theme="dark"] .stat-card,
+:root[data-theme="dark"] .browser-frame,
+:root[data-theme="dark"] .work-card,
+:root[data-theme="dark"] .service-grid article,
+:root[data-theme="dark"] .graphic-chip,
+:root[data-theme="dark"] .passport-section .passport-frame,
+:root[data-theme="dark"] .esa-fun-fact-icon,
+:root[data-theme="dark"] .esa-fun-fact-text,
+:root[data-theme="dark"] .journey-country-popup,
+:root[data-theme="dark"] .timeline-node,
+:root[data-theme="dark"] .journey-zoom-button {
+  background: #22262d;
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .quick-links a,
+:root[data-theme="dark"] .work-card a {
+  color: #d9dee7;
+}
+
+:root[data-theme="dark"] .work-card a {
+  border-bottom-color: #d9dee7;
+}
+
+:root[data-theme="dark"] .service-grid p,
+:root[data-theme="dark"] .work-card p,
+:root[data-theme="dark"] .work-card ul,
+:root[data-theme="dark"] .stat-card p,
+:root[data-theme="dark"] .stat-card ul,
+:root[data-theme="dark"] .timeline-grade,
+:root[data-theme="dark"] .journey-country-popup p {
+  color: #c2c8d2;
+}
+
+:root[data-theme="dark"] .browser-bar {
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
+:root[data-theme="dark"] .browser-bar span:nth-child(1) {
+  background: #d46b6b;
+}
+
+:root[data-theme="dark"] .browser-bar span:nth-child(2) {
+  background: #d4bb6b;
+}
+
+:root[data-theme="dark"] .browser-bar span:nth-child(3) {
+  background: #7fd48e;
+}
+
+:root[data-theme="dark"] .journey-map-wrap {
+  border-color: rgba(255, 255, 255, 0.18);
+  background:
+    radial-gradient(circle at 10% 18%, rgba(73, 119, 173, 0.22), transparent 36%),
+    radial-gradient(circle at 82% 78%, rgba(54, 150, 138, 0.2), transparent 38%),
+    linear-gradient(180deg, #1e2229, #171a20);
+}
+
+:root[data-theme="dark"] .journey-play-button,
+:root[data-theme="dark"] .cta-button {
+  background: #f2f2f2;
+  border-color: #f2f2f2;
+  color: #111214;
+}
+
+:root[data-theme="dark"] .journey-map-lines polyline {
+  stroke: #a9bfdc;
+}
+
 .logo {
   display: inline-flex;
   align-items: center;
