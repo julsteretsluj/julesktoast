@@ -681,28 +681,6 @@ h1 {
   background: #0f8a9f;
 }
 
-.journey-legend {
-  margin: 0.75rem 0 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.45rem;
-}
-
-.journey-legend li {
-  background: #ffffff;
-  border: 1px solid #d7d7d7;
-  border-radius: 10px;
-  padding: 0.32rem 0.5rem;
-  font-size: 0.76rem;
-  color: #2b2b2b;
-}
-
-.journey-legend li:nth-child(9) {
-  border-color: #0f8a9f;
-}
-
 .work-card a {
   text-decoration: none;
   display: inline-block;
@@ -865,7 +843,4 @@ footer {
     font-size: 0.7rem;
   }
 
-  .journey-legend {
-    grid-template-columns: 1fr;
-  }
 }
