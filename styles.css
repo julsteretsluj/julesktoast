@@ -407,6 +407,7 @@ h1 {
   border-radius: 18px;
   padding: 1.25rem;
   box-shadow: var(--shadow-sm);
+  position: relative;
 }
 
 .service-grid h3,
@@ -434,11 +435,18 @@ h1 {
 }
 
 .experience-logo {
-  width: 84px;
-  height: 84px;
+  width: 76px;
+  height: 76px;
   object-fit: contain;
   display: block;
-  margin: 0.2rem 0 0.65rem;
+  margin: 0;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.work-card.has-experience-logo {
+  padding-right: 6.4rem;
 }
 
 .school-logo {
@@ -547,5 +555,16 @@ footer {
   .works-grid,
   .info-grid {
     grid-template-columns: 1fr;
+  }
+
+  .experience-logo {
+    width: 62px;
+    height: 62px;
+    top: 0.85rem;
+    right: 0.85rem;
+  }
+
+  .work-card.has-experience-logo {
+    padding-right: 5.25rem;
   }
 }
