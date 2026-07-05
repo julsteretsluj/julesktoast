@@ -215,6 +215,37 @@ h1 {
   gap: 1rem;
 }
 
+.star-profile {
+  margin: 0 auto 0.35rem;
+  width: min(300px, 75%);
+  aspect-ratio: 1 / 1;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-4deg);
+}
+
+.star-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
 .stat-card {
   border-radius: 18px;
   border: 1px solid #dfdfdf;
@@ -472,6 +503,11 @@ footer {
 
   .hero {
     padding: 1.4rem 1rem;
+  }
+
+  .star-profile {
+    width: min(250px, 82%);
+    transform: rotate(-2deg);
   }
 
   .service-grid,
