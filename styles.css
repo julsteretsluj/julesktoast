@@ -1099,8 +1099,31 @@ h1 {
 }
 
 .contact-section {
+  position: relative;
+  overflow: hidden;
   padding: clamp(1.5rem, 5vw, 3rem);
   text-align: center;
+}
+
+.connect-corner-trinkets {
+  pointer-events: none;
+}
+
+.connect-corner-trinket {
+  position: absolute;
+  top: 0.65rem;
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+}
+
+.connect-corner-trinket.left {
+  left: 0.75rem;
+}
+
+.connect-corner-trinket.right {
+  right: 0.75rem;
 }
 
 .contact-section h2 {
@@ -1197,6 +1220,20 @@ footer {
     position: static;
     margin-top: 0.45rem;
     margin-bottom: 0.2rem;
+  }
+
+  .connect-corner-trinket {
+    width: 58px;
+    height: 58px;
+    top: 0.5rem;
+  }
+
+  .connect-corner-trinket.left {
+    left: 0.5rem;
+  }
+
+  .connect-corner-trinket.right {
+    right: 0.5rem;
   }
 
   .passions-trinket .balloon-dog-trinket {
