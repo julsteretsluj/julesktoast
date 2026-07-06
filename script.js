@@ -262,33 +262,78 @@ const organizeLegoSetsByTag = () => {
     groups.get(tagText).push(card);
   });
 
+  const sortedTags = Array.from(groups.keys()).sort((a, b) => collator.compare(a, b));
+  const totalSets = cards.length;
+
+  const renderLegoSetCounter = () => {
+    const counter = document.getElementById("lego-set-counter");
+    if (!counter) return;
+
+    counter.textContent = "";
+
+    const totalNode = document.createElement("p");
+    totalNode.className = "lego-set-counter-total";
+    totalNode.textContent = `${totalSets} set${totalSets === 1 ? "" : "s"} owned`;
+
+    const tagList = document.createElement("ul");
+    tagList.className = "lego-set-counter-tags";
+
+    sortedTags.forEach((tag) => {
+      const tagCount = groups.get(tag)?.length || 0;
+      const item = document.createElement("li");
+      item.className = "lego-set-counter-tag";
+
+      const tagLabel = document.createElement("span");
+      tagLabel.className = "lego-set-counter-tag-name";
+      tagLabel.textContent = tag;
+
+      const tagValue = document.createElement("span");
+      tagValue.className = "lego-set-counter-tag-count";
+      tagValue.textContent = String(tagCount);
+
+      item.append(tagLabel, tagValue);
+      tagList.appendChild(item);
+    });
+
+    counter.append(totalNode, tagList);
+  };
+
   container.textContent = "";
 
-  Array.from(groups.keys())
-    .sort((a, b) => collator.compare(a, b))
-    .forEach((tag) => {
-      const section = document.createElement("section");
-      section.className = "lego-tag-group";
+  sortedTags.forEach((tag) => {
+    const section = document.createElement("section");
+    section.className = "lego-tag-group";
 
-      const heading = document.createElement("h4");
-      heading.className = "lego-tag-heading";
-      heading.textContent = tag;
+    const heading = document.createElement("h4");
+    heading.className = "lego-tag-heading";
 
-      const grid = document.createElement("div");
-      grid.className = "lego-theme-grid";
+    const headingLabel = document.createElement("span");
+    headingLabel.className = "lego-tag-heading-label";
+    headingLabel.textContent = tag;
 
-      const groupCards = groups.get(tag) || [];
-      groupCards
-        .sort((a, b) => {
-          const nameA = a.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
-          const nameB = b.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
-          return collator.compare(nameA, nameB);
-        })
-        .forEach((card) => grid.appendChild(card));
+    const groupCards = groups.get(tag) || [];
+    const headingCount = document.createElement("span");
+    headingCount.className = "lego-tag-count";
+    headingCount.textContent = String(groupCards.length);
 
-      section.append(heading, grid);
-      container.appendChild(section);
-    });
+    heading.append(headingLabel, headingCount);
+
+    const grid = document.createElement("div");
+    grid.className = "lego-theme-grid";
+
+    groupCards
+      .sort((a, b) => {
+        const nameA = a.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
+        const nameB = b.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
+        return collator.compare(nameA, nameB);
+      })
+      .forEach((card) => grid.appendChild(card));
+
+    section.append(heading, grid);
+    container.appendChild(section);
+  });
+
+  renderLegoSetCounter();
 };
 
 addLegoSetShopLinks();

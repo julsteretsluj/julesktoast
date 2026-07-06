@@ -114,6 +114,9 @@ body {
 :root[data-theme="dark"] .passport-section .passport-frame,
 :root[data-theme="dark"] .passport-stamp,
 :root[data-theme="dark"] .lego-owned-set,
+:root[data-theme="dark"] .lego-set-counter,
+:root[data-theme="dark"] .lego-set-counter-tag,
+:root[data-theme="dark"] .lego-tag-count,
 :root[data-theme="dark"] .esa-fun-fact-icon,
 :root[data-theme="dark"] .esa-fun-fact-text,
 :root[data-theme="dark"] .journey-country-popup,
@@ -838,6 +841,51 @@ h1 {
   gap: 0.9rem;
 }
 
+.lego-set-counter {
+  margin-top: 0.85rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 90%, var(--text) 10%);
+}
+
+.lego-set-counter-total {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.lego-set-counter-tags {
+  margin: 0.55rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.lego-set-counter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  background: var(--surface);
+}
+
+.lego-set-counter-tag-name {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.lego-set-counter-tag-count {
+  color: var(--muted);
+  font-weight: 700;
+}
+
 .lego-tag-group {
   display: grid;
   gap: 0.5rem;
@@ -845,9 +893,28 @@ h1 {
 
 .lego-tag-heading {
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
   font-size: 0.86rem;
   color: var(--text);
   font-weight: 700;
+}
+
+.lego-tag-heading-label {
+  min-width: 0;
+}
+
+.lego-tag-count {
+  flex-shrink: 0;
+  padding: 0.12rem 0.42rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.66rem;
+  color: var(--muted);
+  font-weight: 700;
+  background: var(--surface);
 }
 
 .lego-theme-grid {
