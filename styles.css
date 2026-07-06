@@ -113,6 +113,7 @@ body {
 :root[data-theme="dark"] .graphic-chip,
 :root[data-theme="dark"] .passport-section .passport-frame,
 :root[data-theme="dark"] .passport-stamp,
+:root[data-theme="dark"] .lego-owned-set,
 :root[data-theme="dark"] .esa-fun-fact-icon,
 :root[data-theme="dark"] .esa-fun-fact-text,
 :root[data-theme="dark"] .journey-country-popup,
@@ -125,6 +126,10 @@ body {
 
 :root[data-theme="dark"] .passport-stamp {
   border-color: rgba(255, 255, 255, 0.28);
+}
+
+:root[data-theme="dark"] .lego-owned-set img {
+  background: #1d2128;
 }
 
 :root[data-theme="dark"] .quick-links a,
@@ -829,6 +834,38 @@ h1 {
 .passport-stamp:hover {
   transform: rotate(-3deg) translateY(-1px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.lego-owned-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.85rem;
+}
+
+.lego-owned-set {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #f8f8f8;
+  padding: 0.65rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.lego-owned-set img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #ffffff;
+  display: block;
+}
+
+.lego-owned-set p {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 600;
 }
 
 .info-grid {
