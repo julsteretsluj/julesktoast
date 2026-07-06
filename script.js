@@ -104,7 +104,7 @@ if (yearNode) {
 const LEGO_SET_CATALOG = {
   "10309": { name: "Succulents", theme: "Botanicals", year: 2022 },
   "10329": { name: "Tiny Plants", theme: "Botanicals", year: 2023 },
-  "10345": { name: "Flower Arrangement", theme: "Botanicals", year: 2025 },
+  "10345": { name: "Flower Wall", theme: "Botanicals", year: 2025 },
   "10349": { name: "Happy Plants", theme: "Botanicals", year: 2025 },
   "11506": { name: "Rocking Plants", theme: "Botanicals", year: 2026 },
   "11508": { name: "Daisies", theme: "Botanicals", year: 2026 },
@@ -139,7 +139,7 @@ const LEGO_SET_CATALOG = {
   "40902": { name: "Tribute to Leonardo da Vinci", theme: "LEGO Art", year: 2026 },
   "40916": { name: "Floral Picture Frame", theme: "Botanicals", year: 2026 },
   "40923": { name: "Shrek, Donkey & Gingy Figures", theme: "BrickHeadz", year: 2026 },
-  "40926": { name: "SEGA Genesis Console", theme: "Icons", year: 2026 },
+  "40926": { name: "SEGA Genesis Console", theme: "LEGO Icons", year: 2026 },
   "40954": { name: "Germany Postcard", theme: "Postcards", year: 2026 },
   "43217": { name: "Up House", theme: "Disney", year: 2023 },
   "43264": { name: "Toy Story Celebration Train & RC Car", theme: "Disney", year: 2025 },
@@ -152,6 +152,15 @@ const LEGO_SET_CATALOG = {
   "76469": { name: "Dobby the Free Elf", theme: "Harry Potter", year: 2026 },
   "77255": { name: "Lightning McQueen", theme: "Speed Champions", year: 2026 },
   "853666": { name: "Shark Suit Guy Key Chain", theme: "Gear", year: 2017 },
+};
+
+const normalizeLegoThemeTag = (tag) => {
+  const raw = (tag || "").trim();
+  if (!raw) return "LEGO Collection";
+  if (/^icons$/i.test(raw) || /^lego icons$/i.test(raw)) {
+    return "LEGO Icons";
+  }
+  return raw;
 };
 
 const addLegoSetShopLinks = () => {
@@ -182,7 +191,7 @@ const addLegoSetShopLinks = () => {
     const metadata = LEGO_SET_CATALOG[setNumber] || {};
     const releaseYear = explicitSetYear || metadata.year || 0;
     const setName = explicitSetName || metadata.name || (setNumber ? `LEGO Set ${setNumber}` : "LEGO Collection");
-    const setTheme = explicitSetTheme || metadata.theme || "LEGO Collection";
+    const setTheme = normalizeLegoThemeTag(explicitSetTheme || metadata.theme || "LEGO Collection");
     const isRetired = releaseYear > 0 && releaseYear <= 2023;
 
     if (label) {
