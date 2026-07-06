@@ -101,25 +101,67 @@ if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
 }
 
-const inferLegoTheme = (setNumber) => {
-  if (!setNumber) return "LEGO Collection";
-  if (setNumber.startsWith("10")) return "LEGO Icons";
-  if (setNumber.startsWith("21")) return "LEGO Ideas";
-  if (setNumber.startsWith("31")) return "LEGO Creator";
-  if (setNumber.startsWith("40")) return "LEGO Miscellaneous";
-  if (setNumber.startsWith("43")) return "LEGO Disney";
-  if (setNumber.startsWith("71") || setNumber.startsWith("72")) return "LEGO Super Mario";
-  if (setNumber.startsWith("76")) return "LEGO Harry Potter";
-  if (setNumber.startsWith("77")) return "LEGO Speed Champions";
-  if (setNumber.startsWith("85")) return "LEGO Gear";
-  return "LEGO Collection";
+const LEGO_SET_METADATA = {
+  "10309": { name: "Succulents", theme: "Botanicals", year: "2022" },
+  "10329": { name: "Tiny Plants", theme: "Botanicals", year: "2023" },
+  "10349": { name: "Happy Plants", theme: "Botanicals", year: "2025" },
+  "11506": { name: "Rocking Plants", theme: "Botanicals", year: "2026" },
+  "11508": { name: "Daisies", theme: "Botanicals", year: "2026" },
+  "21333": { name: "The Starry Night", theme: "LEGO Ideas and CUUSOO", year: "2022" },
+  "21345": { name: "Polaroid OneStep SX-70", theme: "LEGO Ideas and CUUSOO", year: "2024" },
+  "21357": { name: "Disney Pixar Luxo Jr.", theme: "LEGO Ideas and CUUSOO", year: "2025" },
+  "21358": { name: "Minifigure Vending Machine", theme: "LEGO Ideas and CUUSOO", year: "2025" },
+  "21362": { name: "Mineral Collection", theme: "LEGO Ideas and CUUSOO", year: "2025" },
+  "21366": { name: "Floating Sea Otters", theme: "LEGO Ideas and CUUSOO", year: "2026" },
+  "31147": { name: "Retro Camera", theme: "Creator > Creator 3-in-1", year: "2024" },
+  "31163": { name: "Playful Cat", theme: "Creator > Creator 3-in-1", year: "2025" },
+  "31173": { name: "Wild Animals: Tropical Toucan", theme: "Creator > Creator 3-in-1", year: "2025" },
+  "31208": { name: "Hokusai - The Great Wave", theme: "LEGO Art", year: "2023" },
+  "31214": { name: "LOVE", theme: "LEGO Art", year: "2025" },
+  "31216": { name: "Keith Haring - Dancing Figures", theme: "LEGO Art", year: "2025" },
+  "40516": { name: "Everyone Is Awesome", theme: "Icons", year: "2021" },
+  "40569": { name: "London Postcard", theme: "Creator", year: "2022" },
+  "40713": { name: "Japan Postcard", theme: "Creator", year: "2024" },
+  "40791": { name: "The Goblet of Fire Figures", theme: "Brickheadz", year: "2025" },
+  "40801": { name: "Mike, Dustin, Lucas and Will Figures", theme: "Brickheadz", year: "2025" },
+  "40813": { name: "Lucky Cat", theme: "Chinese Traditional Festivals", year: "2024" },
+  "40816": { name: "Decorative Easter Egg", theme: "Seasonal > Easter", year: "2025" },
+  "40820": { name: "Up-Scaled Santa Minifigure", theme: "Seasonal > Christmas", year: "2025" },
+  "40860": { name: "Toy Story", theme: "Brickheadz", year: "2026" },
+  "40861": { name: "Sulley, Mike and Boo Figures", theme: "Brickheadz", year: "2026" },
+  "40879": { name: "Eleven, Max, Demogorgon and Holly Figures", theme: "Brickheadz", year: "2026" },
+  "40916": { name: "Floral Picture Frame", theme: "Botanicals", year: "2026" },
+  "40923": { name: "Shrek, Donkey & Gingy Figures", theme: "Brickheadz", year: "2026" },
+  "40926": { name: "SEGA Genesis Console", theme: "Other", year: "2026" },
+  "40954": { name: "Germany Postcard", theme: "Creator", year: "2026" },
+  "43217": { name: "Up House", theme: "Disney", year: "2023" },
+  "43264": { name: "Toy Story Celebration Train & RC Car", theme: "Disney > Toy Story", year: "2025" },
+  "43279": { name: "WALL-E and EVE", theme: "Disney", year: "2025" },
+  "71426": { name: "Piranha Plant", theme: "Super Mario", year: "2023" },
+  "72037": { name: "Mario Kart - Mario & Standard Kart", theme: "Super Mario", year: "2025" },
+  "72046": { name: "Game Boy", theme: "Super Mario", year: "2025" },
+  "76449": { name: "Chomping Monster Book of Monsters", theme: "Harry Potter", year: "2025" },
+  "76462": { name: "Hogwarts House Crest", theme: "Harry Potter", year: "2026" },
+  "76469": { name: "Dobby the Free Elf", theme: "Harry Potter", year: "2026" },
+  "77255": { name: "Lightning McQueen", theme: "Speed Champions", year: "2026" },
+  "853666": { name: "Shark Suit Guy Key Chain", theme: "Gear > Key Chain", year: "2017" },
 };
 
-const inferLegoName = (setNumber, imageSrc) => {
-  const lowerSrc = (imageSrc || "").toLowerCase();
-  if (lowerSrc.includes("shark_suit_guy")) return "Shark Suit Guy Key Chain";
-  if (setNumber) return `LEGO Set ${setNumber}`;
-  return "LEGO Set";
+const getLegoMetadata = (setNumber) => {
+  if (!setNumber) {
+    return {
+      name: "LEGO Set",
+      theme: "LEGO Collection",
+      year: "Unknown",
+    };
+  }
+  return (
+    LEGO_SET_METADATA[setNumber] || {
+      name: `LEGO Set ${setNumber}`,
+      theme: "LEGO Collection",
+      year: "Unknown",
+    }
+  );
 };
 
 const enrichLegoOwnedSets = () => {
@@ -138,8 +180,10 @@ const enrichLegoOwnedSets = () => {
 
     const setNumberMatch = label.textContent.match(/(\d{4,6})/);
     const setNumber = setNumberMatch ? setNumberMatch[1] : "";
-    const setName = inferLegoName(setNumber, image.getAttribute("src"));
-    const setTheme = inferLegoTheme(setNumber);
+    const metadataSource = getLegoMetadata(setNumber);
+    const setName = metadataSource.name;
+    const setTheme = metadataSource.theme;
+    const setYear = metadataSource.year;
     card.dataset.setName = setName;
     card.dataset.setTheme = setTheme;
     card.dataset.setNumber = setNumber;
@@ -160,7 +204,7 @@ const enrichLegoOwnedSets = () => {
     themeLine.textContent = `Theme/Category: ${setTheme}`;
 
     const yearLine = document.createElement("p");
-    yearLine.textContent = "Production Year: To be catalogued";
+    yearLine.textContent = `Production Year: ${setYear}`;
 
     metadata.append(nameLine, themeLine, yearLine);
     card.appendChild(metadata);
