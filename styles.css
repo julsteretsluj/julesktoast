@@ -864,6 +864,62 @@ h1 {
   font-weight: 600;
 }
 
+.lego-set-shop-row {
+  margin-top: 0.28rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+  flex-wrap: wrap;
+}
+
+.lego-set-number {
+  font-size: 0.66rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.lego-set-seller-link,
+.lego-set-retired {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lego-set-seller-link {
+  color: var(--text);
+  border-bottom: 1px solid var(--line);
+}
+
+.lego-set-retired {
+  color: #8a5b5b;
+}
+
+.lego-easter-catalog {
+  margin-top: 0.8rem;
+}
+
+.lego-easter-list {
+  margin: 0.65rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+  max-height: 380px;
+  overflow: auto;
+}
+
+.lego-easter-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  font-size: 0.78rem;
+}
+
 .lego-owned-set .lego-owned-set-name {
   color: var(--text);
   font-size: 0.9rem;

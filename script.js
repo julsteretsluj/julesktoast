@@ -101,6 +101,98 @@ if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
 }
 
+const LEGO_SET_CATALOG = {
+  "10309": { year: 2022 },
+  "10329": { year: 2023 },
+  "10349": { year: 2025 },
+  "11506": { year: 2026 },
+  "11508": { year: 2026 },
+  "21333": { year: 2022 },
+  "21345": { year: 2024 },
+  "21357": { year: 2025 },
+  "21358": { year: 2025 },
+  "21362": { year: 2025 },
+  "21366": { year: 2026 },
+  "31147": { year: 2024 },
+  "31163": { year: 2025 },
+  "31173": { year: 2025 },
+  "31208": { year: 2023 },
+  "31214": { year: 2025 },
+  "31216": { year: 2025 },
+  "40516": { year: 2021 },
+  "40569": { year: 2022 },
+  "40713": { year: 2024 },
+  "40791": { year: 2025 },
+  "40801": { year: 2025 },
+  "40813": { year: 2024 },
+  "40816": { year: 2025 },
+  "40820": { year: 2025 },
+  "40860": { year: 2026 },
+  "40861": { year: 2026 },
+  "40879": { year: 2026 },
+  "40916": { year: 2026 },
+  "40923": { year: 2026 },
+  "40926": { year: 2026 },
+  "40954": { year: 2026 },
+  "43217": { year: 2023 },
+  "43264": { year: 2025 },
+  "43279": { year: 2025 },
+  "71426": { year: 2023 },
+  "72037": { year: 2025 },
+  "72046": { year: 2025 },
+  "76449": { year: 2025 },
+  "76462": { year: 2026 },
+  "76469": { year: 2026 },
+  "77255": { year: 2026 },
+  "853666": { year: 2017 },
+};
+
+const addLegoSetShopLinks = () => {
+  const cards = document.querySelectorAll(".lego-owned-set");
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    const existingRow = card.querySelector(".lego-set-shop-row");
+    if (existingRow) existingRow.remove();
+
+    const img = card.querySelector("img");
+    const label = card.querySelector("p");
+    const sourceText = `${img?.getAttribute("alt") || ""} ${label?.textContent || ""}`;
+    const setNumberMatch = sourceText.match(/(\d{4,6})/);
+    if (!setNumberMatch) return;
+    const setNumber = setNumberMatch[1];
+    const releaseYear = LEGO_SET_CATALOG[setNumber]?.year || 0;
+    const isRetired = releaseYear > 0 && releaseYear <= 2023;
+
+    const row = document.createElement("div");
+    row.className = "lego-set-shop-row";
+
+    const setNumberNode = document.createElement("span");
+    setNumberNode.className = "lego-set-number";
+    setNumberNode.textContent = `Set ${setNumber}`;
+    row.appendChild(setNumberNode);
+
+    if (isRetired) {
+      const retiredNode = document.createElement("span");
+      retiredNode.className = "lego-set-retired";
+      retiredNode.textContent = "Retired";
+      row.appendChild(retiredNode);
+    } else {
+      const sellerLink = document.createElement("a");
+      sellerLink.className = "lego-set-seller-link";
+      sellerLink.href = `https://www.lego.com/en-us/search?q=${setNumber}`;
+      sellerLink.target = "_blank";
+      sellerLink.rel = "noreferrer";
+      sellerLink.textContent = "Seller";
+      row.appendChild(sellerLink);
+    }
+
+    card.appendChild(row);
+  });
+};
+
+addLegoSetShopLinks();
+
 const educationTimeline = document.getElementById("education-timeline");
 if (educationTimeline) {
   const timelineNodes = educationTimeline.querySelectorAll(".timeline-node");
