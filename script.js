@@ -123,8 +123,13 @@ const inferLegoName = (setNumber, imageSrc) => {
 };
 
 const enrichLegoOwnedSets = () => {
-  const legoCards = document.querySelectorAll(".lego-owned-set");
+  const legoGrid = document.querySelector(".lego-owned-grid");
+  if (!legoGrid) return;
+
+  const legoCards = Array.from(legoGrid.querySelectorAll(".lego-owned-set"));
   if (!legoCards.length) return;
+
+  const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
 
   legoCards.forEach((card) => {
     const image = card.querySelector("img");
@@ -135,6 +140,9 @@ const enrichLegoOwnedSets = () => {
     const setNumber = setNumberMatch ? setNumberMatch[1] : "";
     const setName = inferLegoName(setNumber, image.getAttribute("src"));
     const setTheme = inferLegoTheme(setNumber);
+    card.dataset.setName = setName;
+    card.dataset.setTheme = setTheme;
+    card.dataset.setNumber = setNumber;
 
     label.textContent = setName;
     label.classList.add("lego-owned-set-name");
@@ -157,6 +165,43 @@ const enrichLegoOwnedSets = () => {
     metadata.append(nameLine, themeLine, yearLine);
     card.appendChild(metadata);
   });
+
+  const themeGroups = new Map();
+  legoCards.forEach((card) => {
+    const theme = card.dataset.setTheme || "LEGO Collection";
+    if (!themeGroups.has(theme)) {
+      themeGroups.set(theme, []);
+    }
+    themeGroups.get(theme).push(card);
+  });
+
+  const sortedThemes = Array.from(themeGroups.keys()).sort((a, b) => collator.compare(a, b));
+  const groupedContent = document.createDocumentFragment();
+
+  sortedThemes.forEach((theme) => {
+    const section = document.createElement("section");
+    section.className = "lego-theme-group";
+
+    const heading = document.createElement("h4");
+    heading.className = "lego-theme-heading";
+    heading.textContent = theme;
+
+    const themeGrid = document.createElement("div");
+    themeGrid.className = "lego-theme-sets";
+
+    const cards = themeGroups.get(theme) || [];
+    cards.sort((a, b) => {
+      const byName = collator.compare(a.dataset.setName || "", b.dataset.setName || "");
+      if (byName !== 0) return byName;
+      return collator.compare(a.dataset.setNumber || "", b.dataset.setNumber || "");
+    });
+
+    cards.forEach((card) => themeGrid.appendChild(card));
+    section.append(heading, themeGrid);
+    groupedContent.appendChild(section);
+  });
+
+  legoGrid.replaceChildren(groupedContent);
 };
 
 enrichLegoOwnedSets();
