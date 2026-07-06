@@ -144,6 +144,7 @@ const LEGO_SET_CATALOG = {
   "40926": { name: "SEGA Genesis Console", theme: "LEGO Icons", year: 2026 },
   "40954": { name: "Germany Postcard", theme: "Postcards", year: 2026 },
   "43217": { name: "Up House", theme: "Disney", year: 2023 },
+  "43230": { name: "Walt Disney Tribute Camera", theme: "Disney", year: 2023 },
   "43264": { name: "Toy Story Celebration Train & RC Car", theme: "Disney", year: 2025 },
   "43279": { name: "WALL-E and EVE", theme: "Disney", year: 2025 },
   "71426": { name: "Piranha Plant", theme: "Super Mario", year: 2023 },
