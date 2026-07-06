@@ -113,6 +113,7 @@ const LEGO_SET_CATALOG = {
   "21333": { name: "The Starry Night", theme: "LEGO Ideas", year: 2022 },
   "21342": { name: "The Insect Collection", theme: "LEGO Ideas", year: 2023 },
   "21345": { name: "Polaroid OneStep SX-70", theme: "LEGO Ideas", year: 2024 },
+  "21347": { name: "Red London Telephone Box", theme: "LEGO Ideas", year: 2024 },
   "21357": { name: "Disney Pixar Luxo Jr.", theme: "LEGO Ideas", year: 2025 },
   "21358": { name: "Minifigure Vending Machine", theme: "LEGO Ideas", year: 2025 },
   "21362": { name: "Mineral Collection", theme: "LEGO Ideas", year: 2025 },
