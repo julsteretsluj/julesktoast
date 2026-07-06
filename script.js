@@ -147,51 +147,6 @@ const LEGO_SET_METADATA = {
   "853666": { name: "Shark Suit Guy Key Chain", theme: "Gear > Key Chain", year: "2017" },
 };
 
-const LEGO_SET_IMAGE_OVERRIDES = {
-  "10309": "botanicals1.png",
-  "10329": "botanicals2.png",
-  "10349": "happyplants.png",
-  "11506": "rockingplants.png",
-  "21333": "art1.png",
-  "21345": "polaroid.png",
-  "21357": "pixarlamp.png",
-  "21358": "vendingmachine.png",
-  "21362": "minerals.png",
-  "21366": "otter.png",
-  "31147": "retrocam.png",
-  "31163": "cat.png",
-  "31173": "toucan.png",
-  "31208": "greatwave.png",
-  "31214": "love.png",
-  "31216": "dancingfigures.png",
-  "40516": "everyoneisawesome.png",
-  "40569": "londonpostcard.png",
-  "40713": "japanpiostcard.png",
-  "40791": "harrypotter2.png",
-  "40801": "strangerthings1.png",
-  "40813": "luckycat.png",
-  "40816": "easteregg.png",
-  "40820": "santa.png",
-  "40860": "toystory2.png",
-  "40861": "monstersinc.png",
-  "40879": "strangerthings2.png",
-  "40916": "botanicals3.png",
-  "40923": "shrek.png",
-  "40926": "segamegadrive.png",
-  "40954": "germanypostcard.png",
-  "43217": "uphouse.png",
-  "43264": "toystory1.png",
-  "43279": "walleandeve.png",
-  "71426": "piranhaplant.png",
-  "72037": "mario.png",
-  "72046": "gameboy.png",
-  "76449": "harrypotter1.png",
-  "76462": "harrypotter3.png",
-  "76469": "dobbyfreeelf.png",
-  "77255": "mcqueen.png",
-  "853666": "shark.png",
-};
-
 const getLegoMetadata = (setNumber) => {
   if (!setNumber) {
     return {
@@ -229,12 +184,6 @@ const enrichLegoOwnedSets = () => {
     const setName = metadataSource.name;
     const setTheme = metadataSource.theme;
     const setYear = metadataSource.year;
-    const overrideImage = LEGO_SET_IMAGE_OVERRIDES[setNumber];
-
-    if (overrideImage) {
-      image.setAttribute("src", overrideImage);
-    }
-
     card.dataset.setName = setName;
     card.dataset.setTheme = setTheme;
     card.dataset.setNumber = setNumber;
