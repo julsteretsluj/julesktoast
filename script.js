@@ -101,6 +101,66 @@ if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
 }
 
+const inferLegoTheme = (setNumber) => {
+  if (!setNumber) return "LEGO Collection";
+  if (setNumber.startsWith("10")) return "LEGO Icons";
+  if (setNumber.startsWith("21")) return "LEGO Ideas";
+  if (setNumber.startsWith("31")) return "LEGO Creator";
+  if (setNumber.startsWith("40")) return "LEGO Miscellaneous";
+  if (setNumber.startsWith("43")) return "LEGO Disney";
+  if (setNumber.startsWith("71") || setNumber.startsWith("72")) return "LEGO Super Mario";
+  if (setNumber.startsWith("76")) return "LEGO Harry Potter";
+  if (setNumber.startsWith("77")) return "LEGO Speed Champions";
+  if (setNumber.startsWith("85")) return "LEGO Gear";
+  return "LEGO Collection";
+};
+
+const inferLegoName = (setNumber, imageSrc) => {
+  const lowerSrc = (imageSrc || "").toLowerCase();
+  if (lowerSrc.includes("shark_suit_guy")) return "Shark Suit Guy Key Chain";
+  if (setNumber) return `LEGO Set ${setNumber}`;
+  return "LEGO Set";
+};
+
+const enrichLegoOwnedSets = () => {
+  const legoCards = document.querySelectorAll(".lego-owned-set");
+  if (!legoCards.length) return;
+
+  legoCards.forEach((card) => {
+    const image = card.querySelector("img");
+    const label = card.querySelector("p");
+    if (!image || !label) return;
+
+    const setNumberMatch = label.textContent.match(/(\d{4,6})/);
+    const setNumber = setNumberMatch ? setNumberMatch[1] : "";
+    const setName = inferLegoName(setNumber, image.getAttribute("src"));
+    const setTheme = inferLegoTheme(setNumber);
+
+    label.textContent = setName;
+    label.classList.add("lego-owned-set-name");
+
+    const existingMeta = card.querySelector(".lego-set-meta");
+    if (existingMeta) existingMeta.remove();
+
+    const metadata = document.createElement("div");
+    metadata.className = "lego-set-meta";
+
+    const nameLine = document.createElement("p");
+    nameLine.textContent = `Name: ${setName}`;
+
+    const themeLine = document.createElement("p");
+    themeLine.textContent = `Theme/Category: ${setTheme}`;
+
+    const yearLine = document.createElement("p");
+    yearLine.textContent = "Production Year: To be catalogued";
+
+    metadata.append(nameLine, themeLine, yearLine);
+    card.appendChild(metadata);
+  });
+};
+
+enrichLegoOwnedSets();
+
 const educationTimeline = document.getElementById("education-timeline");
 if (educationTimeline) {
   const timelineNodes = educationTimeline.querySelectorAll(".timeline-node");
