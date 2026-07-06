@@ -128,10 +128,6 @@ body {
   border-color: rgba(255, 255, 255, 0.28);
 }
 
-:root[data-theme="dark"] .lego-owned-set img {
-  background: #1d2128;
-}
-
 :root[data-theme="dark"] .quick-links a,
 :root[data-theme="dark"] .work-card a {
   color: #d9dee7;
@@ -857,7 +853,7 @@ h1 {
   aspect-ratio: 1 / 1;
   object-fit: contain;
   border-radius: 10px;
-  background: #ffffff;
+  background: transparent;
   display: block;
 }
 
