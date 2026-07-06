@@ -102,49 +102,56 @@ if (yearNode) {
 }
 
 const LEGO_SET_CATALOG = {
-  "10309": { year: 2022 },
-  "10329": { year: 2023 },
-  "10349": { year: 2025 },
-  "11506": { year: 2026 },
-  "11508": { year: 2026 },
-  "21333": { year: 2022 },
-  "21345": { year: 2024 },
-  "21357": { year: 2025 },
-  "21358": { year: 2025 },
-  "21362": { year: 2025 },
-  "21366": { year: 2026 },
-  "31147": { year: 2024 },
-  "31163": { year: 2025 },
-  "31173": { year: 2025 },
-  "31208": { year: 2023 },
-  "31214": { year: 2025 },
-  "31216": { year: 2025 },
-  "40516": { year: 2021 },
-  "40569": { year: 2022 },
-  "40713": { year: 2024 },
-  "40791": { year: 2025 },
-  "40801": { year: 2025 },
-  "40813": { year: 2024 },
-  "40816": { year: 2025 },
-  "40820": { year: 2025 },
-  "40860": { year: 2026 },
-  "40861": { year: 2026 },
-  "40879": { year: 2026 },
-  "40916": { year: 2026 },
-  "40923": { year: 2026 },
-  "40926": { year: 2026 },
-  "40954": { year: 2026 },
-  "43217": { year: 2023 },
-  "43264": { year: 2025 },
-  "43279": { year: 2025 },
-  "71426": { year: 2023 },
-  "72037": { year: 2025 },
-  "72046": { year: 2025 },
-  "76449": { year: 2025 },
-  "76462": { year: 2026 },
-  "76469": { year: 2026 },
-  "77255": { year: 2026 },
-  "853666": { year: 2017 },
+  "10309": { name: "Succulents", theme: "Botanicals", year: 2022 },
+  "10329": { name: "Tiny Plants", theme: "Botanicals", year: 2023 },
+  "10345": { name: "Flower Arrangement", theme: "Botanicals", year: 2025 },
+  "10349": { name: "Happy Plants", theme: "Botanicals", year: 2025 },
+  "11506": { name: "Rocking Plants", theme: "Botanicals", year: 2026 },
+  "11508": { name: "Daisies", theme: "Botanicals", year: 2026 },
+  "21333": { name: "The Starry Night", theme: "LEGO Ideas", year: 2022 },
+  "21342": { name: "The Insect Collection", theme: "LEGO Ideas", year: 2023 },
+  "21345": { name: "Polaroid OneStep SX-70", theme: "LEGO Ideas", year: 2024 },
+  "21357": { name: "Disney Pixar Luxo Jr.", theme: "LEGO Ideas", year: 2025 },
+  "21358": { name: "Minifigure Vending Machine", theme: "LEGO Ideas", year: 2025 },
+  "21362": { name: "Mineral Collection", theme: "LEGO Ideas", year: 2025 },
+  "21366": { name: "Floating Sea Otters", theme: "LEGO Ideas", year: 2026 },
+  "31147": { name: "Retro Camera", theme: "Creator 3-in-1", year: 2024 },
+  "31163": { name: "Playful Cat", theme: "Creator 3-in-1", year: 2025 },
+  "31173": { name: "Wild Animals: Tropical Toucan", theme: "Creator 3-in-1", year: 2025 },
+  "31208": { name: "Hokusai - The Great Wave", theme: "LEGO Art", year: 2023 },
+  "31214": { name: "LOVE", theme: "LEGO Art", year: 2025 },
+  "31216": { name: "Keith Haring - Dancing Figures", theme: "LEGO Art", year: 2025 },
+  "40516": { name: "Everyone Is Awesome", theme: "LEGO Icons", year: 2021 },
+  "40569": { name: "London Postcard", theme: "Postcards", year: 2022 },
+  "40713": { name: "Japan Postcard", theme: "Postcards", year: 2024 },
+  "40791": { name: "The Goblet of Fire Figures", theme: "BrickHeadz", year: 2025 },
+  "40801": { name: "Mike, Dustin, Lucas and Will Figures", theme: "BrickHeadz", year: 2025 },
+  "40813": { name: "Lucky Cat", theme: "Chinese Traditional Festivals", year: 2024 },
+  "40816": { name: "Decorative Easter Egg", theme: "Seasonal - Easter", year: 2025 },
+  "40820": { name: "Up-Scaled Santa Minifigure", theme: "Seasonal - Christmas", year: 2025 },
+  "40860": { name: "Toy Story", theme: "BrickHeadz", year: 2026 },
+  "40861": { name: "Sulley, Mike and Boo Figures", theme: "BrickHeadz", year: 2026 },
+  "40879": {
+    name: "Eleven, Max, Demogorgon and Holly Figures",
+    theme: "BrickHeadz",
+    year: 2026,
+  },
+  "40902": { name: "Tribute to Leonardo da Vinci", theme: "LEGO Art", year: 2026 },
+  "40916": { name: "Floral Picture Frame", theme: "Botanicals", year: 2026 },
+  "40923": { name: "Shrek, Donkey & Gingy Figures", theme: "BrickHeadz", year: 2026 },
+  "40926": { name: "SEGA Genesis Console", theme: "Icons", year: 2026 },
+  "40954": { name: "Germany Postcard", theme: "Postcards", year: 2026 },
+  "43217": { name: "Up House", theme: "Disney", year: 2023 },
+  "43264": { name: "Toy Story Celebration Train & RC Car", theme: "Disney", year: 2025 },
+  "43279": { name: "WALL-E and EVE", theme: "Disney", year: 2025 },
+  "71426": { name: "Piranha Plant", theme: "Super Mario", year: 2023 },
+  "72037": { name: "Mario Kart - Mario & Standard Kart", theme: "Super Mario", year: 2025 },
+  "72046": { name: "Game Boy", theme: "Super Mario", year: 2025 },
+  "76449": { name: "Chomping Monster Book of Monsters", theme: "Harry Potter", year: 2025 },
+  "76462": { name: "Hogwarts House Crest", theme: "Harry Potter", year: 2026 },
+  "76469": { name: "Dobby the Free Elf", theme: "Harry Potter", year: 2026 },
+  "77255": { name: "Lightning McQueen", theme: "Speed Champions", year: 2026 },
+  "853666": { name: "Shark Suit Guy Key Chain", theme: "Gear", year: 2017 },
 };
 
 const addLegoSetShopLinks = () => {
@@ -152,17 +159,43 @@ const addLegoSetShopLinks = () => {
   if (!cards.length) return;
 
   cards.forEach((card) => {
-    const existingRow = card.querySelector(".lego-set-shop-row");
-    if (existingRow) existingRow.remove();
+    card.querySelectorAll(".lego-set-shop-row").forEach((node) => node.remove());
+    card.querySelectorAll(".lego-set-series-tag").forEach((node) => node.remove());
 
     const img = card.querySelector("img");
-    const label = card.querySelector("p");
+    let label = card.querySelector("p");
+    if (!label) {
+      label = document.createElement("p");
+      if (img && img.parentElement === card) {
+        img.insertAdjacentElement("afterend", label);
+      } else {
+        card.appendChild(label);
+      }
+    }
+    const explicitSetName = card.getAttribute("data-set-name")?.trim() || "";
+    const explicitSetTheme = card.getAttribute("data-set-theme")?.trim() || "";
+    const explicitSetNumber = card.getAttribute("data-set-number")?.trim() || "";
+    const explicitSetYear = Number(card.getAttribute("data-set-year") || 0);
     const sourceText = `${img?.getAttribute("alt") || ""} ${label?.textContent || ""}`;
     const setNumberMatch = sourceText.match(/(\d{4,6})/);
-    if (!setNumberMatch) return;
-    const setNumber = setNumberMatch[1];
-    const releaseYear = LEGO_SET_CATALOG[setNumber]?.year || 0;
+    const setNumber = explicitSetNumber || setNumberMatch?.[1] || "";
+    const metadata = LEGO_SET_CATALOG[setNumber] || {};
+    const releaseYear = explicitSetYear || metadata.year || 0;
+    const setName = explicitSetName || metadata.name || (setNumber ? `LEGO Set ${setNumber}` : "LEGO Collection");
+    const setTheme = explicitSetTheme || metadata.theme || "LEGO Collection";
     const isRetired = releaseYear > 0 && releaseYear <= 2023;
+
+    if (label) {
+      label.textContent = setName;
+      label.classList.add("lego-owned-set-name");
+    }
+
+    const seriesTag = document.createElement("span");
+    seriesTag.className = "lego-set-series-tag";
+    seriesTag.textContent = setTheme;
+    card.appendChild(seriesTag);
+
+    if (!setNumber) return;
 
     const row = document.createElement("div");
     row.className = "lego-set-shop-row";
