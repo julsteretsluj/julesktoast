@@ -210,42 +210,15 @@ const enrichLegoOwnedSets = () => {
     card.appendChild(metadata);
   });
 
-  const themeGroups = new Map();
-  legoCards.forEach((card) => {
-    const theme = card.dataset.setTheme || "LEGO Collection";
-    if (!themeGroups.has(theme)) {
-      themeGroups.set(theme, []);
-    }
-    themeGroups.get(theme).push(card);
+  legoCards.sort((a, b) => {
+    const byTheme = collator.compare(a.dataset.setTheme || "", b.dataset.setTheme || "");
+    if (byTheme !== 0) return byTheme;
+    const byName = collator.compare(a.dataset.setName || "", b.dataset.setName || "");
+    if (byName !== 0) return byName;
+    return collator.compare(a.dataset.setNumber || "", b.dataset.setNumber || "");
   });
 
-  const sortedThemes = Array.from(themeGroups.keys()).sort((a, b) => collator.compare(a, b));
-  const groupedContent = document.createDocumentFragment();
-
-  sortedThemes.forEach((theme) => {
-    const section = document.createElement("section");
-    section.className = "lego-theme-group";
-
-    const heading = document.createElement("h4");
-    heading.className = "lego-theme-heading";
-    heading.textContent = theme;
-
-    const themeGrid = document.createElement("div");
-    themeGrid.className = "lego-theme-sets";
-
-    const cards = themeGroups.get(theme) || [];
-    cards.sort((a, b) => {
-      const byName = collator.compare(a.dataset.setName || "", b.dataset.setName || "");
-      if (byName !== 0) return byName;
-      return collator.compare(a.dataset.setNumber || "", b.dataset.setNumber || "");
-    });
-
-    cards.forEach((card) => themeGrid.appendChild(card));
-    section.append(heading, themeGrid);
-    groupedContent.appendChild(section);
-  });
-
-  legoGrid.replaceChildren(groupedContent);
+  legoCards.forEach((card) => legoGrid.appendChild(card));
 };
 
 enrichLegoOwnedSets();
