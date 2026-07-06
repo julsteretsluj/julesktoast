@@ -224,7 +224,59 @@ const addLegoSetShopLinks = () => {
   });
 };
 
+const organizeLegoSetsByTag = () => {
+  const container = document.querySelector(".lego-owned-grid");
+  if (!container) return;
+
+  const cards = Array.from(container.querySelectorAll(".lego-owned-set"));
+  if (!cards.length) return;
+
+  const collator = new Intl.Collator(undefined, { sensitivity: "base", numeric: true });
+  const groups = new Map();
+
+  cards.forEach((card) => {
+    const tagText =
+      card.querySelector(".lego-set-series-tag")?.textContent?.trim() ||
+      card.getAttribute("data-set-theme")?.trim() ||
+      "LEGO Collection";
+
+    if (!groups.has(tagText)) {
+      groups.set(tagText, []);
+    }
+    groups.get(tagText).push(card);
+  });
+
+  container.textContent = "";
+
+  Array.from(groups.keys())
+    .sort((a, b) => collator.compare(a, b))
+    .forEach((tag) => {
+      const section = document.createElement("section");
+      section.className = "lego-tag-group";
+
+      const heading = document.createElement("h4");
+      heading.className = "lego-tag-heading";
+      heading.textContent = tag;
+
+      const grid = document.createElement("div");
+      grid.className = "lego-theme-grid";
+
+      const groupCards = groups.get(tag) || [];
+      groupCards
+        .sort((a, b) => {
+          const nameA = a.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
+          const nameB = b.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
+          return collator.compare(nameA, nameB);
+        })
+        .forEach((card) => grid.appendChild(card));
+
+      section.append(heading, grid);
+      container.appendChild(section);
+    });
+};
+
 addLegoSetShopLinks();
+organizeLegoSetsByTag();
 
 const educationTimeline = document.getElementById("education-timeline");
 if (educationTimeline) {
