@@ -103,6 +103,7 @@ if (yearNode) {
 
 const LEGO_SET_CATALOG = {
   "10298": { name: "Vespa 125", theme: "LEGO Icons", year: 2022 },
+  "10300": { name: "Back to the Future Time Machine", theme: "LEGO Icons", year: 2022 },
   "10309": { name: "Succulents", theme: "Botanicals", year: 2022 },
   "10329": { name: "Tiny Plants", theme: "Botanicals", year: 2023 },
   "10345": { name: "Mixed Flowerpot", theme: "Botanicals", year: 2025 },
