@@ -154,6 +154,7 @@ const LEGO_SET_CATALOG = {
   "71426": { name: "Piranha Plant", theme: "Super Mario", year: 2023 },
   "72037": { name: "Mario Kart - Mario & Standard Kart", theme: "Super Mario", year: 2025 },
   "72046": { name: "Game Boy", theme: "Super Mario", year: 2025 },
+  "76438": { name: "Harry Potter 2024 Advent Calendar", theme: "Harry Potter", year: 2024 },
   "76449": { name: "Chomping Monster Book of Monsters", theme: "Harry Potter", year: 2025 },
   "76462": { name: "Hogwarts House Crest", theme: "Harry Potter", year: 2026 },
   "76469": { name: "Dobby the Free Elf", theme: "Harry Potter", year: 2026 },
