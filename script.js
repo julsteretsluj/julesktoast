@@ -268,6 +268,16 @@ const addLegoSetShopLinks = () => {
   });
 };
 
+const sortLegoCardsByName = (cardList, collator) =>
+  [...cardList].sort((a, b) => {
+    const nameA = a.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
+    const nameB = b.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
+    return collator.compare(nameA, nameB);
+  });
+
+const legoTagToId = (tag) =>
+  `lego-${tag.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "collection"}`;
+
 const organizeLegoSetsByTag = () => {
   const container = document.querySelector(".lego-owned-grid");
   if (!container) return;
@@ -295,6 +305,7 @@ const organizeLegoSetsByTag = () => {
   const sumPieceCount = (cardList) =>
     cardList.reduce((sum, card) => sum + Number(card.getAttribute("data-piece-count") || 0), 0);
   const totalPieces = sumPieceCount(cards);
+  const tagIdToName = new Map(sortedTags.map((tag) => [legoTagToId(tag), tag]));
 
   const renderLegoSetCounter = () => {
     const counter = document.getElementById("lego-set-counter");
@@ -335,41 +346,125 @@ const organizeLegoSetsByTag = () => {
     counter.append(totalNode, tagList);
   };
 
-  container.textContent = "";
+  const catalog = document.createElement("div");
+  catalog.className = "lego-catalog";
+  catalog.id = "lego-catalog";
 
-  sortedTags.forEach((tag) => {
-    const section = document.createElement("section");
-    section.className = "lego-tag-group";
+  const tablist = document.createElement("div");
+  tablist.className = "lego-subtabs";
+  tablist.setAttribute("role", "tablist");
+  tablist.setAttribute("aria-label", "LEGO collection views");
 
-    const heading = document.createElement("h4");
-    heading.className = "lego-tag-heading";
+  const panelsWrap = document.createElement("div");
+  panelsWrap.className = "lego-subtab-panels";
 
-    const headingLabel = document.createElement("span");
-    headingLabel.className = "lego-tag-heading-label";
-    headingLabel.textContent = tag;
+  const panelGrids = new Map();
 
-    const groupCards = groups.get(tag) || [];
-    const headingCount = document.createElement("span");
-    headingCount.className = "lego-tag-count";
-    headingCount.textContent = String(groupCards.length);
+  const createLegoSubtab = (tabId, label, isActive) => {
+    const tab = document.createElement("button");
+    tab.type = "button";
+    tab.className = `lego-subtab${isActive ? " is-active" : ""}`;
+    tab.setAttribute("role", "tab");
+    tab.id = `${tabId}-tab`;
+    tab.setAttribute("aria-selected", String(isActive));
+    tab.setAttribute("aria-controls", `${tabId}-panel`);
+    tab.setAttribute("data-lego-tab", tabId);
+    tab.textContent = label;
+    tab.tabIndex = isActive ? 0 : -1;
 
-    heading.append(headingLabel, headingCount);
+    const panel = document.createElement("div");
+    panel.className = `lego-subtab-panel${isActive ? " is-active" : ""}`;
+    panel.id = `${tabId}-panel`;
+    panel.setAttribute("role", "tabpanel");
+    panel.setAttribute("aria-labelledby", `${tabId}-tab`);
+    panel.hidden = !isActive;
 
     const grid = document.createElement("div");
     grid.className = "lego-theme-grid";
+    grid.setAttribute(
+      "aria-label",
+      label === "All" ? "All LEGO sets in alphabetical order" : `${label} LEGO sets`
+    );
+    panel.appendChild(grid);
+    panelsWrap.appendChild(panel);
+    tablist.appendChild(tab);
+    panelGrids.set(tabId, grid);
+  };
 
-    groupCards
-      .sort((a, b) => {
-        const nameA = a.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
-        const nameB = b.querySelector(".lego-owned-set-name")?.textContent?.trim() || "";
-        return collator.compare(nameA, nameB);
-      })
-      .forEach((card) => grid.appendChild(card));
+  createLegoSubtab("lego-all", "All", true);
+  sortedTags.forEach((tag) => createLegoSubtab(legoTagToId(tag), tag, false));
 
-    section.append(heading, grid);
-    container.appendChild(section);
-  });
+  catalog.append(tablist, panelsWrap);
+  container.replaceWith(catalog);
 
+  const renderLegoSubtab = (tabId) => {
+    const grid = panelGrids.get(tabId);
+    if (!grid) return;
+
+    grid.textContent = "";
+
+    const cardsToRender =
+      tabId === "lego-all"
+        ? sortLegoCardsByName(cards, collator)
+        : sortLegoCardsByName(groups.get(tagIdToName.get(tabId) || "") || [], collator);
+
+    cardsToRender.forEach((card) => grid.appendChild(card));
+  };
+
+  const initLegoSubtabs = () => {
+    const tabs = Array.from(tablist.querySelectorAll("[role='tab']"));
+    const panels = Array.from(panelsWrap.querySelectorAll(".lego-subtab-panel"));
+    if (!tabs.length || !panels.length) return;
+
+    const activateLegoTab = (tab) => {
+      const tabId = tab.getAttribute("data-lego-tab");
+      if (!tabId) return;
+
+      tabs.forEach((item) => {
+        const isActive = item === tab;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-selected", String(isActive));
+        item.tabIndex = isActive ? 0 : -1;
+      });
+
+      panels.forEach((panel) => {
+        const isActive = panel.id === `${tabId}-panel`;
+        panel.classList.toggle("is-active", isActive);
+        panel.hidden = !isActive;
+      });
+
+      renderLegoSubtab(tabId);
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => activateLegoTab(tab));
+
+      tab.addEventListener("keydown", (event) => {
+        const currentIndex = tabs.indexOf(tab);
+        let nextIndex = currentIndex;
+
+        if (event.key === "ArrowRight") {
+          nextIndex = (currentIndex + 1) % tabs.length;
+        } else if (event.key === "ArrowLeft") {
+          nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        } else if (event.key === "Home") {
+          nextIndex = 0;
+        } else if (event.key === "End") {
+          nextIndex = tabs.length - 1;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        tabs[nextIndex].focus();
+        activateLegoTab(tabs[nextIndex]);
+      });
+    });
+
+    renderLegoSubtab("lego-all");
+  };
+
+  initLegoSubtabs();
   renderLegoSetCounter();
 };
 
@@ -378,15 +473,16 @@ organizeLegoSetsByTag();
 
 const SNACKLES_CATALOG = {
   reindeer: {
-    name: "Snackles 13.7\" Reindeer and Reese's Trees Christmas Plush",
-    theme: "Christmas Edition",
+    name: "Snackles 5\" Mini Reindeer and Reese's Trees Christmas Plush",
+    theme: "Christmas Edition · Mini",
     sellerUrl:
-      "https://www.target.com/p/snackles-13-7-34-reindeer-and-reese-39-s-trees-christmas-plush/-/A-91194800",
+      "https://www.target.com/s?searchTerm=snackles+5+inch+christmas+reindeer+reeses",
   },
   santa: {
-    name: "Snackles 13.7\" Santa Claus and Mentos Candy Cane Christmas Plush",
-    theme: "Christmas Edition",
-    sellerUrl: "https://www.target.com/s?searchTerm=snackles+santa+claus+mentos+christmas+plush",
+    name: "Snackles 5\" Mini Santa Claus and Mentos Candy Cane Christmas Plush",
+    theme: "Christmas Edition · Mini",
+    sellerUrl:
+      "https://www.target.com/s?searchTerm=snackles+5+inch+christmas+santa+mentos",
   },
 };
 
