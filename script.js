@@ -399,6 +399,81 @@ const enrichSnacklesOwnedItems = () => {
 
 enrichSnacklesOwnedItems();
 
+const initCollectionSubtabs = () => {
+  const tablist = document.querySelector(".collection-subtabs");
+  if (!tablist) return;
+
+  const tabs = Array.from(tablist.querySelectorAll("[role='tab']"));
+  const panels = Array.from(document.querySelectorAll(".collection-tab-panel"));
+  if (!tabs.length || !panels.length) return;
+
+  const panelById = new Map(
+    panels.map((panel) => [panel.id.replace("collection-panel-", ""), panel])
+  );
+
+  const activateTab = (tab, { updateHash = true } = {}) => {
+    const tabId = tab.getAttribute("data-collection-tab");
+    const panel = panelById.get(tabId);
+    if (!panel) return;
+
+    tabs.forEach((item) => {
+      const isActive = item === tab;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-selected", String(isActive));
+      item.tabIndex = isActive ? 0 : -1;
+    });
+
+    panels.forEach((item) => {
+      const isActive = item === panel;
+      item.classList.toggle("is-active", isActive);
+      item.hidden = !isActive;
+    });
+
+    if (updateHash) {
+      const nextHash = `#${tabId}`;
+      if (window.location.hash !== nextHash) {
+        history.replaceState(null, "", nextHash);
+      }
+    }
+  };
+
+  const activateFromHash = () => {
+    const hashId = window.location.hash.replace("#", "");
+    const matchingTab = tabs.find((tab) => tab.getAttribute("data-collection-tab") === hashId);
+    activateTab(matchingTab || tabs[0], { updateHash: false });
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => activateTab(tab));
+
+    tab.addEventListener("keydown", (event) => {
+      const currentIndex = tabs.indexOf(tab);
+      let nextIndex = currentIndex;
+
+      if (event.key === "ArrowRight") {
+        nextIndex = (currentIndex + 1) % tabs.length;
+      } else if (event.key === "ArrowLeft") {
+        nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+      } else if (event.key === "Home") {
+        nextIndex = 0;
+      } else if (event.key === "End") {
+        nextIndex = tabs.length - 1;
+      } else {
+        return;
+      }
+
+      event.preventDefault();
+      tabs[nextIndex].focus();
+      activateTab(tabs[nextIndex]);
+    });
+  });
+
+  window.addEventListener("hashchange", activateFromHash);
+  activateFromHash();
+};
+
+initCollectionSubtabs();
+
 const educationTimeline = document.getElementById("education-timeline");
 if (educationTimeline) {
   const timelineNodes = educationTimeline.querySelectorAll(".timeline-node");

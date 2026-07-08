@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260706-2225" />
+    <link rel="stylesheet" href="styles.css?v=20260708-1200" />
   </head>
   <body>
     <div class="grain-overlay"></div>
@@ -141,25 +141,79 @@
 
       </section>
 
-      <section class="shell-card info-panel">
+      <section class="shell-card info-panel collection-tabs-panel reveal-target">
         <h2>Collections That Support Wellbeing 📦</h2>
-        <article class="work-card">
-          <h3>Comfort Collection</h3>
-          <p>
-            My collection is intentionally small and meaningful: a few trusted items connected to
-            positive memories, calm, and confidence. They serve as practical tools for emotional
-            regulation and self-management.
-          </p>
-        </article>
-        <article class="work-card">
-          <h3>LEGO</h3>
-          <p>
-            Building LEGO helps me reset mentally, stay present, and decompress after high-intensity
-            days.
-          </p>
-        </article>
-        <div class="lego-set-counter" id="lego-set-counter" aria-label="LEGO set counts"></div>
-        <div class="lego-owned-grid" aria-label="LEGO sets I own">
+        <div class="collection-subtabs" role="tablist" aria-label="Collection categories">
+          <button
+            type="button"
+            class="collection-subtab is-active"
+            role="tab"
+            id="collection-tab-comfort"
+            aria-selected="true"
+            aria-controls="collection-panel-comfort"
+            data-collection-tab="comfort"
+          >
+            Comfort
+          </button>
+          <button
+            type="button"
+            class="collection-subtab"
+            role="tab"
+            id="collection-tab-lego"
+            aria-selected="false"
+            aria-controls="collection-panel-lego"
+            data-collection-tab="lego"
+            tabindex="-1"
+          >
+            LEGO
+          </button>
+          <button
+            type="button"
+            class="collection-subtab"
+            role="tab"
+            id="collection-tab-snackles"
+            aria-selected="false"
+            aria-controls="collection-panel-snackles"
+            data-collection-tab="snackles"
+            tabindex="-1"
+          >
+            Snackles
+          </button>
+        </div>
+
+        <div class="collection-tab-panels">
+          <div
+            class="collection-tab-panel is-active"
+            role="tabpanel"
+            id="collection-panel-comfort"
+            aria-labelledby="collection-tab-comfort"
+          >
+            <article class="work-card">
+              <h3>Comfort Collection</h3>
+              <p>
+                My collection is intentionally small and meaningful: a few trusted items connected to
+                positive memories, calm, and confidence. They serve as practical tools for emotional
+                regulation and self-management.
+              </p>
+            </article>
+          </div>
+
+          <div
+            class="collection-tab-panel"
+            role="tabpanel"
+            id="collection-panel-lego"
+            aria-labelledby="collection-tab-lego"
+            hidden
+          >
+            <article class="work-card">
+              <h3>LEGO</h3>
+              <p>
+                Building LEGO helps me reset mentally, stay present, and decompress after high-intensity
+                days.
+              </p>
+            </article>
+            <div class="lego-set-counter" id="lego-set-counter" aria-label="LEGO set counts"></div>
+            <div class="lego-owned-grid" aria-label="LEGO sets I own">
           <article class="lego-owned-set">
             <img src="assets/lego-40791.png" alt="LEGO set 40791" loading="lazy" />
             <p>Set 40791</p>
@@ -400,23 +454,34 @@
             <img src="assets/lego-gwp2.png" alt="LEGO GWP set 2" loading="lazy" />
             <p>GWP 2</p>
           </article>
-        </div>
-        <article class="work-card snackles-collection-card">
-          <h3>Snackles</h3>
-          <p>
-            Snackles are plush companions that pair a soft stuffed animal with a mini snack mascot —
-            a playful, collectible comfort line I enjoy building slowly over time.
-          </p>
-        </article>
-        <div class="snackles-owned-grid" aria-label="Snackles I own">
-          <article class="snackles-owned-item" data-snackle-id="reindeer">
-            <img src="assets/snackles-reindeer.jpg" alt="Snackles Reindeer and Reese's Trees Christmas Plush" loading="lazy" />
-            <p>Reindeer Snackle</p>
-          </article>
-          <article class="snackles-owned-item" data-snackle-id="santa">
-            <img src="assets/snackles-santa.jpg" alt="Snackles Santa Claus and Mentos Candy Cane Christmas Plush" loading="lazy" />
-            <p>Santa Snackle</p>
-          </article>
+            </div>
+          </div>
+
+          <div
+            class="collection-tab-panel"
+            role="tabpanel"
+            id="collection-panel-snackles"
+            aria-labelledby="collection-tab-snackles"
+            hidden
+          >
+            <article class="work-card">
+              <h3>Snackles</h3>
+              <p>
+                Snackles are plush companions that pair a soft stuffed animal with a mini snack mascot —
+                a playful, collectible comfort line I enjoy building slowly over time.
+              </p>
+            </article>
+            <div class="snackles-owned-grid" aria-label="Snackles I own">
+              <article class="snackles-owned-item" data-snackle-id="reindeer">
+                <img src="assets/snackles-reindeer.jpg" alt="Snackles Reindeer and Reese's Trees Christmas Plush" loading="lazy" />
+                <p>Reindeer Snackle</p>
+              </article>
+              <article class="snackles-owned-item" data-snackle-id="santa">
+                <img src="assets/snackles-santa.jpg" alt="Snackles Santa Claus and Mentos Candy Cane Christmas Plush" loading="lazy" />
+                <p>Santa Snackle</p>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -425,6 +490,6 @@
       <p>© <span id="year"></span> Jules Kitto-Astrop. All rights reserved.</p>
     </footer>
 
-    <script src="script.js?v=20260708-1147"></script>
+    <script src="script.js?v=20260708-1200"></script>
   </body>
 </html>
