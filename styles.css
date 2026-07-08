@@ -1089,7 +1089,8 @@ h1 {
   flex-wrap: wrap;
 }
 
-.lego-set-number {
+.lego-set-number,
+.lego-set-piece-count {
   font-size: 0.66rem;
   color: var(--muted);
   font-weight: 600;

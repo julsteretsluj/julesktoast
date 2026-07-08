@@ -102,64 +102,65 @@ if (yearNode) {
 }
 
 const LEGO_SET_CATALOG = {
-  "10298": { name: "Vespa 125", theme: "LEGO Icons", year: 2022 },
-  "10300": { name: "Back to the Future Time Machine", theme: "LEGO Icons", year: 2022 },
-  "10309": { name: "Succulents", theme: "Botanicals", year: 2022 },
-  "10329": { name: "Tiny Plants", theme: "Botanicals", year: 2023 },
-  "10345": { name: "Mixed Flowerpot", theme: "Botanicals", year: 2025 },
-  "10349": { name: "Happy Plants", theme: "Botanicals", year: 2025 },
-  "11506": { name: "Rocking Plants", theme: "Botanicals", year: 2026 },
-  "11508": { name: "Daisies", theme: "Botanicals", year: 2026 },
-  "21333": { name: "The Starry Night", theme: "LEGO Ideas", year: 2022 },
-  "21342": { name: "The Insect Collection", theme: "LEGO Ideas", year: 2023 },
-  "21345": { name: "Polaroid OneStep SX-70", theme: "LEGO Ideas", year: 2024 },
-  "21347": { name: "Red London Telephone Box", theme: "LEGO Ideas", year: 2024 },
-  "21357": { name: "Disney Pixar Luxo Jr.", theme: "LEGO Ideas", year: 2025 },
-  "21358": { name: "Minifigure Vending Machine", theme: "LEGO Ideas", year: 2025 },
-  "21362": { name: "Mineral Collection", theme: "LEGO Ideas", year: 2025 },
-  "21366": { name: "Floating Sea Otters", theme: "LEGO Ideas", year: 2026 },
-  "31147": { name: "Retro Camera", theme: "Creator 3-in-1", year: 2024 },
-  "31163": { name: "Playful Cat", theme: "Creator 3-in-1", year: 2025 },
-  "31173": { name: "Wild Animals: Tropical Toucan", theme: "Creator 3-in-1", year: 2025 },
-  "31208": { name: "Hokusai - The Great Wave", theme: "LEGO Art", year: 2023 },
-  "31214": { name: "LOVE", theme: "LEGO Art", year: 2025 },
-  "31216": { name: "Keith Haring - Dancing Figures", theme: "LEGO Art", year: 2025 },
-  "40516": { name: "Everyone Is Awesome", theme: "LEGO Icons", year: 2021 },
-  "40527": { name: "Easter Chicks", theme: "Seasonal - Easter", year: 2022 },
-  "40569": { name: "London Postcard", theme: "Postcards", year: 2022 },
-  "40587": { name: "Easter Basket", theme: "Seasonal - Easter", year: 2023 },
-  "40713": { name: "Japan Postcard", theme: "Postcards", year: 2024 },
-  "40764": { name: "Easter Bunny Surprise", theme: "Seasonal - Easter", year: 2025 },
-  "40791": { name: "The Goblet of Fire Figures", theme: "BrickHeadz", year: 2025 },
-  "40801": { name: "Mike, Dustin, Lucas and Will Figures", theme: "BrickHeadz", year: 2025 },
-  "40813": { name: "Lucky Cat", theme: "Chinese Traditional Festivals", year: 2024 },
-  "40816": { name: "Decorative Easter Egg", theme: "Seasonal - Easter", year: 2025 },
-  "40820": { name: "Up-Scaled Santa Minifigure", theme: "Seasonal - Christmas", year: 2025 },
-  "40860": { name: "Toy Story", theme: "BrickHeadz", year: 2026 },
-  "40861": { name: "Sulley, Mike and Boo Figures", theme: "BrickHeadz", year: 2026 },
+  "10298": { name: "Vespa 125", theme: "LEGO Icons", year: 2022, pieces: 1106 },
+  "10300": { name: "Back to the Future Time Machine", theme: "LEGO Icons", year: 2022, pieces: 1642 },
+  "10309": { name: "Succulents", theme: "Botanicals", year: 2022, pieces: 771 },
+  "10329": { name: "Tiny Plants", theme: "Botanicals", year: 2023, pieces: 758 },
+  "10345": { name: "Mixed Flowerpot", theme: "Botanicals", year: 2025, pieces: 1161 },
+  "10349": { name: "Happy Plants", theme: "Botanicals", year: 2025, pieces: 217 },
+  "11506": { name: "Rocking Plants", theme: "Botanicals", year: 2026, pieces: 253 },
+  "11508": { name: "Daisies", theme: "Botanicals", year: 2026, pieces: 133 },
+  "21333": { name: "The Starry Night", theme: "LEGO Ideas", year: 2022, pieces: 2316 },
+  "21342": { name: "The Insect Collection", theme: "LEGO Ideas", year: 2023, pieces: 1111 },
+  "21345": { name: "Polaroid OneStep SX-70", theme: "LEGO Ideas", year: 2024, pieces: 516 },
+  "21347": { name: "Red London Telephone Box", theme: "LEGO Ideas", year: 2024, pieces: 1469 },
+  "21357": { name: "Disney Pixar Luxo Jr.", theme: "LEGO Ideas", year: 2025, pieces: 613 },
+  "21358": { name: "Minifigure Vending Machine", theme: "LEGO Ideas", year: 2025, pieces: 1183 },
+  "21362": { name: "Mineral Collection", theme: "LEGO Ideas", year: 2025, pieces: 514 },
+  "21366": { name: "Floating Sea Otters", theme: "LEGO Ideas", year: 2026, pieces: 721 },
+  "31147": { name: "Retro Camera", theme: "Creator 3-in-1", year: 2024, pieces: 613 },
+  "31163": { name: "Playful Cat", theme: "Creator 3-in-1", year: 2025, pieces: 407 },
+  "31173": { name: "Wild Animals: Tropical Toucan", theme: "Creator 3-in-1", year: 2025, pieces: 243 },
+  "31208": { name: "Hokusai - The Great Wave", theme: "LEGO Art", year: 2023, pieces: 1810 },
+  "31214": { name: "LOVE", theme: "LEGO Art", year: 2025, pieces: 693 },
+  "31216": { name: "Keith Haring - Dancing Figures", theme: "LEGO Art", year: 2025, pieces: 1773 },
+  "40516": { name: "Everyone Is Awesome", theme: "LEGO Icons", year: 2021, pieces: 346 },
+  "40527": { name: "Easter Chicks", theme: "Seasonal - Easter", year: 2022, pieces: 60 },
+  "40569": { name: "London Postcard", theme: "Postcards", year: 2022, pieces: 277 },
+  "40587": { name: "Easter Basket", theme: "Seasonal - Easter", year: 2023, pieces: 344 },
+  "40713": { name: "Japan Postcard", theme: "Postcards", year: 2024, pieces: 277 },
+  "40764": { name: "Easter Bunny Surprise", theme: "Seasonal - Easter", year: 2025, pieces: 239 },
+  "40791": { name: "The Goblet of Fire Figures", theme: "BrickHeadz", year: 2025, pieces: 374 },
+  "40801": { name: "Mike, Dustin, Lucas and Will Figures", theme: "BrickHeadz", year: 2025, pieces: 354 },
+  "40813": { name: "Lucky Cat", theme: "Chinese Traditional Festivals", year: 2024, pieces: 371 },
+  "40816": { name: "Decorative Easter Egg", theme: "Seasonal - Easter", year: 2025, pieces: 375 },
+  "40820": { name: "Up-Scaled Santa Minifigure", theme: "Seasonal - Christmas", year: 2025, pieces: 214 },
+  "40860": { name: "Toy Story", theme: "BrickHeadz", year: 2026, pieces: 213 },
+  "40861": { name: "Sulley, Mike and Boo Figures", theme: "BrickHeadz", year: 2026, pieces: 169 },
   "40879": {
     name: "Eleven, Max, Demogorgon and Holly Figures",
     theme: "BrickHeadz",
     year: 2026,
+    pieces: 225,
   },
-  "40902": { name: "Tribute to Leonardo da Vinci", theme: "LEGO Art", year: 2026 },
-  "40916": { name: "Floral Picture Frame", theme: "Botanicals", year: 2026 },
-  "40923": { name: "Shrek, Donkey & Gingy Figures", theme: "BrickHeadz", year: 2026 },
-  "40926": { name: "SEGA Genesis Console", theme: "LEGO Icons", year: 2026 },
-  "40954": { name: "Germany Postcard", theme: "Postcards", year: 2026 },
-  "43217": { name: "Up House", theme: "Disney", year: 2023 },
-  "43230": { name: "Walt Disney Tribute Camera", theme: "Disney", year: 2023 },
-  "43264": { name: "Toy Story Celebration Train & RC Car", theme: "Disney", year: 2025 },
-  "43279": { name: "WALL-E and EVE", theme: "Disney", year: 2025 },
-  "71426": { name: "Piranha Plant", theme: "Super Mario", year: 2023 },
-  "72037": { name: "Mario Kart - Mario & Standard Kart", theme: "Super Mario", year: 2025 },
-  "72046": { name: "Game Boy", theme: "Super Mario", year: 2025 },
-  "76438": { name: "Harry Potter 2024 Advent Calendar", theme: "Harry Potter", year: 2024 },
-  "76449": { name: "Chomping Monster Book of Monsters", theme: "Harry Potter", year: 2025 },
-  "76462": { name: "Hogwarts House Crest", theme: "Harry Potter", year: 2026 },
-  "76469": { name: "Dobby the Free Elf", theme: "Harry Potter", year: 2026 },
-  "77255": { name: "Lightning McQueen", theme: "Speed Champions", year: 2026 },
-  "853666": { name: "Shark Suit Guy Key Chain", theme: "Gear", year: 2017 },
+  "40902": { name: "Tribute to Leonardo da Vinci", theme: "LEGO Art", year: 2026, pieces: 894 },
+  "40916": { name: "Floral Picture Frame", theme: "Botanicals", year: 2026, pieces: 310 },
+  "40923": { name: "Shrek, Donkey & Gingy Figures", theme: "BrickHeadz", year: 2026, pieces: 207 },
+  "40926": { name: "SEGA Genesis Console", theme: "LEGO Icons", year: 2026, pieces: 884 },
+  "40954": { name: "Germany Postcard", theme: "Postcards", year: 2026, pieces: 277 },
+  "43217": { name: "Up House", theme: "Disney", year: 2023, pieces: 598 },
+  "43230": { name: "Walt Disney Tribute Camera", theme: "Disney", year: 2023, pieces: 811 },
+  "43264": { name: "Toy Story Celebration Train & RC Car", theme: "Disney", year: 2025, pieces: 485 },
+  "43279": { name: "WALL-E and EVE", theme: "Disney", year: 2025, pieces: 614 },
+  "71426": { name: "Piranha Plant", theme: "Super Mario", year: 2023, pieces: 540 },
+  "72037": { name: "Mario Kart - Mario & Standard Kart", theme: "Super Mario", year: 2025, pieces: 846 },
+  "72046": { name: "Game Boy", theme: "Super Mario", year: 2025, pieces: 421 },
+  "76456": { name: "Harry Potter 2025 Advent Calendar", theme: "Harry Potter", year: 2025, pieces: 278 },
+  "76449": { name: "Chomping Monster Book of Monsters", theme: "Harry Potter", year: 2025, pieces: 518 },
+  "76462": { name: "Hogwarts House Crest", theme: "Harry Potter", year: 2026, pieces: 545 },
+  "76469": { name: "Dobby the Free Elf", theme: "Harry Potter", year: 2026, pieces: 127 },
+  "77255": { name: "Lightning McQueen", theme: "Speed Champions", year: 2026, pieces: 322 },
+  "853666": { name: "Shark Suit Guy Key Chain", theme: "Gear", year: 2017, pieces: 1 },
 };
 
 const normalizeLegoThemeTag = (tag) => {
@@ -171,6 +172,15 @@ const normalizeLegoThemeTag = (tag) => {
   return raw;
 };
 
+const appendLegoPieceCount = (row, pieceCount) => {
+  if (!pieceCount) return;
+
+  const pieceNode = document.createElement("span");
+  pieceNode.className = "lego-set-piece-count";
+  pieceNode.textContent = `${pieceCount.toLocaleString()} pcs`;
+  row.appendChild(pieceNode);
+};
+
 const addLegoSetShopLinks = () => {
   const cards = document.querySelectorAll(".lego-owned-set");
   if (!cards.length) return;
@@ -178,6 +188,7 @@ const addLegoSetShopLinks = () => {
   cards.forEach((card) => {
     card.querySelectorAll(".lego-set-shop-row").forEach((node) => node.remove());
     card.querySelectorAll(".lego-set-series-tag").forEach((node) => node.remove());
+    card.removeAttribute("data-piece-count");
 
     const img = card.querySelector("img");
     let label = card.querySelector("p");
@@ -193,14 +204,20 @@ const addLegoSetShopLinks = () => {
     const explicitSetTheme = card.getAttribute("data-set-theme")?.trim() || "";
     const explicitSetNumber = card.getAttribute("data-set-number")?.trim() || "";
     const explicitSetYear = Number(card.getAttribute("data-set-year") || 0);
+    const explicitSetPieces = Number(card.getAttribute("data-set-pieces") || 0);
     const sourceText = `${img?.getAttribute("alt") || ""} ${label?.textContent || ""}`;
     const setNumberMatch = sourceText.match(/(\d{4,6})/);
     const setNumber = explicitSetNumber || setNumberMatch?.[1] || "";
     const metadata = LEGO_SET_CATALOG[setNumber] || {};
     const releaseYear = explicitSetYear || metadata.year || 0;
+    const pieceCount = explicitSetPieces || metadata.pieces || 0;
     const setName = explicitSetName || metadata.name || (setNumber ? `LEGO Set ${setNumber}` : "LEGO Collection");
     const setTheme = normalizeLegoThemeTag(explicitSetTheme || metadata.theme || "LEGO Collection");
     const isRetired = releaseYear > 0 && releaseYear <= 2023;
+
+    if (pieceCount > 0) {
+      card.setAttribute("data-piece-count", String(pieceCount));
+    }
 
     if (label) {
       label.textContent = setName;
@@ -212,7 +229,15 @@ const addLegoSetShopLinks = () => {
     seriesTag.textContent = setTheme;
     card.appendChild(seriesTag);
 
-    if (!setNumber) return;
+    if (!setNumber) {
+      if (pieceCount > 0) {
+        const row = document.createElement("div");
+        row.className = "lego-set-shop-row";
+        appendLegoPieceCount(row, pieceCount);
+        card.appendChild(row);
+      }
+      return;
+    }
 
     const row = document.createElement("div");
     row.className = "lego-set-shop-row";
@@ -221,6 +246,8 @@ const addLegoSetShopLinks = () => {
     setNumberNode.className = "lego-set-number";
     setNumberNode.textContent = `Set ${setNumber}`;
     row.appendChild(setNumberNode);
+
+    appendLegoPieceCount(row, pieceCount);
 
     if (isRetired) {
       const retiredNode = document.createElement("span");
@@ -265,6 +292,9 @@ const organizeLegoSetsByTag = () => {
 
   const sortedTags = Array.from(groups.keys()).sort((a, b) => collator.compare(a, b));
   const totalSets = cards.length;
+  const sumPieceCount = (cardList) =>
+    cardList.reduce((sum, card) => sum + Number(card.getAttribute("data-piece-count") || 0), 0);
+  const totalPieces = sumPieceCount(cards);
 
   const renderLegoSetCounter = () => {
     const counter = document.getElementById("lego-set-counter");
@@ -274,13 +304,18 @@ const organizeLegoSetsByTag = () => {
 
     const totalNode = document.createElement("p");
     totalNode.className = "lego-set-counter-total";
-    totalNode.textContent = `${totalSets} set${totalSets === 1 ? "" : "s"} owned`;
+    totalNode.textContent =
+      totalPieces > 0
+        ? `${totalSets} sets · ${totalPieces.toLocaleString()} pieces`
+        : `${totalSets} set${totalSets === 1 ? "" : "s"} owned`;
 
     const tagList = document.createElement("ul");
     tagList.className = "lego-set-counter-tags";
 
     sortedTags.forEach((tag) => {
-      const tagCount = groups.get(tag)?.length || 0;
+      const groupCards = groups.get(tag) || [];
+      const tagCount = groupCards.length;
+      const tagPieces = sumPieceCount(groupCards);
       const item = document.createElement("li");
       item.className = "lego-set-counter-tag";
 
@@ -290,7 +325,8 @@ const organizeLegoSetsByTag = () => {
 
       const tagValue = document.createElement("span");
       tagValue.className = "lego-set-counter-tag-count";
-      tagValue.textContent = String(tagCount);
+      tagValue.textContent =
+        tagPieces > 0 ? `${tagCount} · ${tagPieces.toLocaleString()} pcs` : String(tagCount);
 
       item.append(tagLabel, tagValue);
       tagList.appendChild(item);
