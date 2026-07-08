@@ -486,6 +486,12 @@ const SNACKLES_CATALOG = {
     sellerUrl:
       "https://www.target.com/s?searchTerm=snackles+5+inch+christmas+santa+mentos",
   },
+  haribo: {
+    name: "Snackles 5\" Mini Nancy and Haribo Goldbears Plush",
+    theme: "Series 2 · Mini",
+    sellerUrl:
+      "https://www.target.com/s?searchTerm=snackles+5+inch+haribo+goldbears",
+  },
 };
 
 const enrichSnacklesOwnedItems = () => {
