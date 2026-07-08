@@ -339,6 +339,65 @@ const organizeLegoSetsByTag = () => {
 addLegoSetShopLinks();
 organizeLegoSetsByTag();
 
+const SNACKLES_CATALOG = {
+  reindeer: {
+    name: "Snackles 13.7\" Reindeer and Reese's Trees Christmas Plush",
+    theme: "Christmas Edition",
+    sellerUrl:
+      "https://www.target.com/p/snackles-13-7-34-reindeer-and-reese-39-s-trees-christmas-plush/-/A-91194800",
+  },
+  santa: {
+    name: "Snackles 13.7\" Santa Claus and Mentos Candy Cane Christmas Plush",
+    theme: "Christmas Edition",
+    sellerUrl: "https://www.target.com/s?searchTerm=snackles+santa+claus+mentos+christmas+plush",
+  },
+};
+
+const enrichSnacklesOwnedItems = () => {
+  const cards = document.querySelectorAll(".snackles-owned-item");
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    card.querySelectorAll(".snackles-set-series-tag").forEach((node) => node.remove());
+    card.querySelectorAll(".snackles-set-shop-row").forEach((node) => node.remove());
+
+    const snackleId = card.getAttribute("data-snackle-id")?.trim() || "";
+    const metadata = SNACKLES_CATALOG[snackleId] || {};
+    const setName = metadata.name || card.querySelector("p")?.textContent?.trim() || "Snackles Plush";
+    const setTheme = metadata.theme || "Snackles";
+
+    let label = card.querySelector("p");
+    if (!label) {
+      label = document.createElement("p");
+      card.appendChild(label);
+    }
+    label.textContent = setName;
+    label.classList.add("snackles-owned-item-name");
+
+    const seriesTag = document.createElement("span");
+    seriesTag.className = "snackles-set-series-tag";
+    seriesTag.textContent = setTheme;
+    card.appendChild(seriesTag);
+
+    if (!metadata.sellerUrl) return;
+
+    const row = document.createElement("div");
+    row.className = "snackles-set-shop-row";
+
+    const sellerLink = document.createElement("a");
+    sellerLink.className = "snackles-set-seller-link";
+    sellerLink.href = metadata.sellerUrl;
+    sellerLink.target = "_blank";
+    sellerLink.rel = "noreferrer";
+    sellerLink.textContent = "Seller";
+    row.appendChild(sellerLink);
+
+    card.appendChild(row);
+  });
+};
+
+enrichSnacklesOwnedItems();
+
 const educationTimeline = document.getElementById("education-timeline");
 if (educationTimeline) {
   const timelineNodes = educationTimeline.querySelectorAll(".timeline-node");

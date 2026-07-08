@@ -114,6 +114,7 @@ body {
 :root[data-theme="dark"] .passport-section .passport-frame,
 :root[data-theme="dark"] .passport-stamp,
 :root[data-theme="dark"] .lego-owned-set,
+:root[data-theme="dark"] .snackles-owned-item,
 :root[data-theme="dark"] .lego-set-counter,
 :root[data-theme="dark"] .lego-set-counter-tag,
 :root[data-theme="dark"] .lego-tag-count,
@@ -921,6 +922,71 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
   gap: 0.55rem;
+}
+
+.snackles-collection-card {
+  margin-top: 1rem;
+}
+
+.snackles-owned-grid {
+  margin-top: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.55rem;
+}
+
+.snackles-owned-item {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f8f8f8;
+  padding: 0.4rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.snackles-owned-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 10px;
+  background: transparent;
+  display: block;
+}
+
+.snackles-owned-item .snackles-owned-item-name {
+  margin: 0.34rem 0 0;
+  color: var(--text);
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.snackles-set-series-tag {
+  display: inline-flex;
+  margin-top: 0.24rem;
+  padding: 0.13rem 0.38rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 88%, var(--text) 12%);
+  color: var(--text);
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.snackles-set-shop-row {
+  margin-top: 0.28rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.snackles-set-seller-link {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1px solid var(--line);
 }
 
 .lego-owned-set {
